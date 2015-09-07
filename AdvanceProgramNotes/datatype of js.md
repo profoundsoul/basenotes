@@ -1,5 +1,6 @@
 ## javascript 数据类型
 > ECMAScript中有5种简单的数据类型（基础数据类型）和一种复杂数据数据类型：
+  
   * Undefined
   * Null
   * Boolean
@@ -25,10 +26,14 @@ alert(typeof(message));		//string
 alert(typeof 95);			//number
 ```
 
-1. Undefined类型
+### 1. Undefined类型
+
 > Undefined类型只有一个值，即特殊值undefined。在使用var声明变量但未对其加以初始化时，这个变量的值就是undefined，例如：
+
 ```javascript
 var message;
 console.log(message == undefined);    // true
 ```
+
+
 
