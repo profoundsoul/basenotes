@@ -73,6 +73,7 @@ var msgAsBool = Boolean(message);
 ```
 
 **各种数据类型与Boolean对应的转换规则**：
+
 |数据类型          |转换为true的值             |转换为false的值        |
 | ------------  | :----------------------: | :------------------: |
 |Boolean          | true                     | false                |
