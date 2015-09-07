@@ -15,7 +15,7 @@
 	最重要的的节点类型是：
 	元素Element-1，属性attr-2，文本text-3，注释comments-8，文档document-9。
 
-** 值-元素类型**
+**值-元素类型**
 * 1-ELEMENT
 * 2-ATTRIBUTE
 * 3-TEXT
