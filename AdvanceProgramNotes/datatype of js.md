@@ -193,6 +193,65 @@ var hexNum2 =0x1f;   //十六进制的31
 
 ---
 
+### 4. 数值转换
+
+> 有三个函数可以把非数值转换为数值：Number()、parseInt()和parseFloat()。
+* Number适合任何数据类型。
+* 另外两个专门把字符串转换成数值类型。
+
+Number函数转换规则：
+* Boolean值，true和false将分别转换为1和0
+* 数值，简单传入和返回
+* null值，返回0
+* undefined，返回NaN
+* 如果是字符串，遵循以下规则：
+	- 只包含数字（前面带正号和负号），转换为十进制数值(忽略前导0)。
+	- 包含有效浮点型格式，转换为浮点数值（忽略前导0）。
+	- 包含有效十六进制格式，转换为十进制数值。
+	- 如果是空字符串，转换为0。
+	- 除上以外都转换为NaN。
+* 如果是对象，调用ValueOf取值并转换，如果是NaN。则调用对象的toString()，然后再按照上面字符串的规则转换。
+
+```javascript
+	console.log(Number(true));			//1
+	console.log(Number(11));			//11
+	console.log(Number(null));			//0
+	console.log(Number(undefined)); 	//NaN
+	console.log(Number("Hello World"));	//NaN
+	console.log(Number(""));			//0
+	console.log(Number("oxF"));			//15
+
+```
+
+parseInt函数只针对字符串转换数值，转换规则如下：
+* 顺序解析，忽略前面的字符前面空格。如果第一个字符不是**数值**或**负号**，返回NaN
+* 如果第一个是数值字符，继续解析第二个。直到解析完所有后续字符或遇到非数值符号停止。
+* 能自动识别出所有整数。***建议加上第二个参数表示进制数值***
+
+```javascript 
+	var num1 = parseInt("1234blue");		//1234
+	var num2 = parseInt("");				//NaN
+	var num3 = parseInt("0xA")；				//10
+	var num4 = parseInt("22.5");			//22
+	var num5 = parseInt("070");				//56
+	var num6 = parseInt("70");				//70
+	var num7 = parseInt("70", 8);			//56
+```
+
+parseFloat函数只针对字符串转换为浮点型，转换规则如下：
+* 忽略空格字符，从第一个字符开始解析每个字符。遇到非浮点数字字符结束。
+* 字符中的第一个小数点是有效的，第二个小数点就无效。因此后面的字符串也会被忽略。
+
+```javascript
+	var num1 = parseFloat("123blue");
+	var num2 = parseFloat("0xA");
+	var num3 = parseFloat("22.5");
+	var num4 = parseFloat("22.32.4");
+	var num5 = parseFloat("090824.5");
+	var num6 = parseFloat("3.123e7");			//31230000
+```
+---
+
 
 
 
