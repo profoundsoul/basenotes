@@ -116,6 +116,7 @@ var hexNum1 =0xA;    //十六进制的10
 var hexNum2 =0x1f;   //十六进制的31
 ```
 ***进行算术计算时，所有八进制和十六进制表示的数值都将转换成十进制数值。***
+***
 
 #### 1. 浮点数值
 
@@ -155,6 +156,7 @@ var hexNum2 =0x1f;   //十六进制的31
 		console.log('You got 0.3.');
 	}
 ```
+***
 
 #### 2. 数值范围
 
@@ -164,6 +166,7 @@ var hexNum2 =0x1f;   //十六进制的31
 	var result = Number.MIN_VALUE + Number.MAX_VALUE;
 	console.log(reuslt);		//false
 ```
+***
 
 #### 3. NaN
 
