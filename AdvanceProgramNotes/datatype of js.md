@@ -156,6 +156,39 @@ var hexNum2 =0x1f;   //十六进制的31
 	}
 ```
 
+#### 2. 数值范围
+
+> Number能表示出的数值位于Number.MIN_VALUE和Number.MAX_VALUE之间。也包括负值和0。超出部分使用Infinity（正无穷）与-Infinity（负无穷）来表示。Infinity无法参与数值计算。可用isFinite()函数判断操作。
+
+```javascript
+	var result = Number.MIN_VALUE + Number.MAX_VALUE;
+	console.log(reuslt);		//false
+```
+
+#### 3. NaN
+
+> NaN，即非数值（是一个特殊的数值），这个数值用于表示一个本来要返回数值的操作数未返回数值的情况（**避免不抛出错误**）。
+
+* 涉及任何NaN的操作都会返回NaN
+* NaN与任何值都不想等，包括NaN本身。
+例如：
+```javascript
+	console.log(NaN == NaN);  //false
+```
+
+> 针对NaN的特点，ECMAScript定义了isNaN函数。接收一个参数，判断参数是否**不是数值**。任何不能转换为数值的尝试都会返回true。
+
+例如：
+```javascrip
+	console.log(isNaN(NaN));					//true
+	console.log(isNaN(10));						//false
+	console.log(isNaN("10");					//false
+	console.log(isNaN("green"));				//true
+	console.log(isNaN(true));					//false;会转换为1
+```
+
+	*** isNaN同样也适用于对象，基于对象调用会先调用对象的valueOf()方法，然后确定该返回的值是否可以转换为数值。不能就基于返回的值在调用toString()方法在测试返回值***。
+
 
 
 
