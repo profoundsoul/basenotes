@@ -298,6 +298,47 @@ parseFloat函数只针对字符串转换为浮点型，转换规则如下：
 - 最后一步是销毁原来的字符串"Java"和字符串"Script"，因为两个字符串没用了。
 
 
+#### 5.3 转换为字符串
+
+* 几乎每个值都有toString()方法。但undefined和null没有。
+```javascript
+	var age = 11;
+	var ageAsString = age.toString();		//字符串"11"
+	var found = true;
+	var foundAsString = found.toString();	//字符串"true"
+	var test;
+	test.toString();						//error
+	var obj = null;
+	obj.toString();							//error
+```
+**toString()有一个参数，可以定义输出数值基数。即：可以输出二进制、八进制、十进制、十六进制**。
+```javascript
+	var num =10;
+	console.log(num.toString(10));		//10
+	console.log(num.toString(2));		//1010
+	console.log(num.toString(8));		//12
+	console.log(num.toString(16));		//a
+	console.log(num.toString());		//10
+```
+
+* String()函数，这个函数能将任何类型的值转换为字符串。遵循如下规则：
+	* 如果有toString()方法，调用方法转换结果
+	* 如果值是null，则返回null
+	* 如果值是undefined，则返回"undefined"
+```javascript
+	var v1 = 10;
+	var v2 = true;
+	var v3 = null;
+	var v4;
+	console.log(String(v1));		//"10"
+	console.log(String(v2));		//"true"
+	console.log(String(v3));		//"null"
+	console.log(String(v4));		//"undefined"
+```
+
+--------------------------------------------------------------
+
+
 
 
 
