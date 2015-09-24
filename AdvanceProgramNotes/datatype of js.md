@@ -356,7 +356,11 @@ parseFloat函数只针对字符串转换为浮点型，转换规则如下：
 
 * propertyIsEnumerable(propertyName):用于检查给定的属性是否能够使用for-in语句来枚举。
 
-* 
+* toLocaleString():返回对象的字符串表示，与执行环境的地区对应。
+
+* toString():返回对象的字符串表示。
+
+* valueOf():返回对象的字符串、数值或布尔值表示。
 
 
 
