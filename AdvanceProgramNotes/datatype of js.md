@@ -338,6 +338,28 @@ parseFloat函数只针对字符串转换为浮点型，转换规则如下：
 
 --------------------------------------------------------------
 
+### 6. object类型
+
+> ECMAScript中的对象其实就是一组数据和功能的集合。对象可以通过执行new操作符后跟创建的对象类型名称来创建。而创建Object类型的类型的实例并未其添加属性和方法，就可以创建自定义的对象。
+
+```javascript
+	var o = new Object();
+	var o1 = new Object;				//有效但不推荐如此创建
+```
+
+任何Object的每个实例都具有以下属性和方法。
+* constructor:保存着用于创建当前对象的函数，即：构造函数（constructor）---Object()
+
+* hasOwnProperty(propertyName):用于检查给定的属性在当前对象实例中（而不是在其原型中）
+
+* isPrototypeOf(object):用于检查传入的对象是否是传入的对象的原型。
+
+* propertyIsEnumerable(propertyName):用于检查给定的属性是否能够使用for-in语句来枚举。
+
+* 
+
+
+
 
 
 
