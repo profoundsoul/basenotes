@@ -3,8 +3,14 @@
 ## Object类型
 
 > Object类型是日常引用类型中最常用的类型。创建Object对象的方法有两种
-+ 使用var obj = new Object();
-+ 直接使用字面量表示法var obj2={aa:test};
++ 使用var obj = new Object()
++ 直接使用字面量表示法var obj2={aa:test}
+
+
+
+
+
+
 
 
 > Object常用的访问属性方法
