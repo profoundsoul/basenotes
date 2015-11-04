@@ -50,4 +50,37 @@ var arr6 = Array(10, 23,35,3);
 
 ##注意：数组实例化也可以省略new。和带New用法含义一模一样##
 
+> 数组的访问特点和length妙用
+* 数组使用[]访问，一般与正常语言访问一致。但若index超出length时，会自动扩充数组大小并返回undefined值
+* length属性可读写。修改length的值可以扩充/缩减数组长度。
+
+```javascript
+var arr = new Array("red", "green", "blue");  
+arr[5]="ttt";             //自动扩充长度为6,第4、5项内容为undefined
+arr.length = 3;           //删除数组第三项后的内容，并将长度变为3
+arr[arr.length] = "test"; //自动增加下一项，相当于push
+```
+
+### 1. 检测类型
+
+> ECMAScript3中确定某个对象是不是一个数组就成为经典问题。对于一个网页或全局对象而言，直接使用instanceOf操作符即可。但如果存在两个不同的全局环境时，会存在两个不同的Array构造函数，判断会失效。
+为了解决此问题，ECMASCript5中新增了Array.isArray方法。但也只对IE9+、FF4+有效。
+
+```javascript
+    // detection Array,default Array.isArray
+    window.isArray = Array.isArray || function(obj){
+        Object.prototype.toString.call(obj) === '[object Array]';
+    };
+
+    console.log(isArray([]));
+```
+
+### 2. 转换方法
+
++ toString  默认会直接返回数组采用逗号分隔字符串
++ valueOf   默认返回数组本身
++ toLocaleString 
+
+###3. 栈操作
+
 
