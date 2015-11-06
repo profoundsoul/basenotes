@@ -83,9 +83,32 @@ arr[arr.length] = "test"; //自动增加下一项，相当于push
 
 ###3. 栈操作
 
-> 数组可以当成栈的基本操作：先进先出
+> 数组可以当成栈的基本操作：后进先出
 
 * push 进栈（推入）
 * pop  出栈（推出）
+
+###4. 队列操作
+
+> 数组也可以当成队列的基本操作：先进先出
+
+* push 入队列
+* shift 出队列
+
+
+###5. 排序方法
+
+> 数组中已经存在两个可以直接用来重排序的方法：sort()、reverse()方法，排序时会调用toString()方法将每一项都转换为字符串，按照字符串ASCII进行排序。
+
+* sort 允许传入一个function作为predicate回调函数，返回值大于0为前一项大于后一项。
+* reserve 允许传入一个function作为predicate回调函数，返回值大于0为前一项大于后一项。
+
+```javascript
+var arr = [1,3,5,6,3,4,7,345];
+arr.sort();             //1,3,3,345,4,5,6,7
+aa.sort(function(item1, item2){return item1-item2;}); //1,3,3,4,5,6,7,345
+```
+
+
 
 
