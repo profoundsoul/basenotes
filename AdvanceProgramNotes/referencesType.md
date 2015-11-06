@@ -124,6 +124,39 @@ colors.splice(1,0,'white'); //新增white
 colors.splice(1,1,'green','hat');   //替换white为green,hat
 ```
 
+###7. 位置方法
+
+> ECMAScript5为数组的实例添加了两个位置的方法：
+* indexOf
+* lastIndexOf 
+
+###注意：该方法只有IE9+、FF2+等现代浏览器支持。###
+
+
+###8. 迭代方法
+
+> ECMAScript5为数组的实例添加5个常用的迭代方法:
+* every
+* some
+* each 对数组进行遍历，每一项都调用回调函数。
+* filter 对数组中的每一项调用predicate函数，函数返回true的项返回并生成新数组。
+* map 对数组中的每一项调用回调函数，将返回的值作为新数组的元素项。
+
+###注意：该方法只有IE9+、FF2+等现代浏览器支持。###
+
+###9. 归并方法
+
+> ECMAScript5还对数组的实例添加了两个归并方法：
+* reduce(function(pre, cur, index, arr){})
+* reduceRight(function(pre, cur, index, arr){})
+
+```javascript
+var v = [1,23,4,345,6,34];
+v.reduce(function(pre, cur, index, arr){return pre + cur;});        //直接求和
+```
+
+###注意：该方法只有IE9+、FF2+等现代浏览器支持。###
+
 
 
 
