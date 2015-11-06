@@ -108,6 +108,22 @@ var arr = [1,3,5,6,3,4,7,345];
 arr.sort();             //1,3,3,345,4,5,6,7
 aa.sort(function(item1, item2){return item1-item2;}); //1,3,3,4,5,6,7,345
 ```
+###6. 常用数组操作方法
+
+* arr1.concat(arr2) 数组拼接返回新数组，新数组为arr1和arr2元素的总和
+* arr1.slice(startidx, endidx) 获取数组部分元素返回新数组。新数组为arr1数组startidx至endidx部分元素。不包含endidx项。
+* arr1.splice(startidx, removelen, newitem, ....) 数组增删改函数，功能很是强大。
+    + 删除元素splice(startidx, removelen)
+    + 替换元素splice(startidx, removelen, newitem, ....)
+    + 新增/插入元素splice(startidx, 0, newitem, ....) 
+
+```javascript
+var colors = ['red','green','yellow','black'];
+colors.splice(1,1); //删除green
+colors.splice(1,0,'white'); //新增white
+colors.splice(1,1,'green','hat');   //替换white为green,hat
+```
+
 
 
 
