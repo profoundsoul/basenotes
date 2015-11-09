@@ -2,8 +2,7 @@
 
 > 每个都是Function类型的对象，而且都与其他引用类型一样具有属性和方法。由于函数函数是对象。因此函数名称实际上也是一个指向函数的对象的指针而已，不会与某个函数绑定。
 
-###通常函数申明语法有三种：###
-
+###通常函数申明语法有三种###：
 ```javascript
 function sum(num1, num2){
   return num1 + num2;
@@ -102,6 +101,58 @@ outer();
 ###当函数在严格模式下运行时，访问arguments.callee/arugments.caller都会报错###
 
 ###函数的严格模式还有一个限制，不能为函数的caller属性赋值，否则会导致错误###
+
+
+###5. 函数属性和方法
+
+> ECMAScript中的函数是对象，因此函数也有自己的属性和方法。每个函数都包含两个属性length 和prototype
+* length 表示函数希望接受的命名参数的个数
+* prototype 是保存它们所有实例方法的真正所在。例如：valueOf和toString都是保存在函数prototype下
+
+```javascript
+function sum(num1, num2){
+  return num1 + num2;
+}
+
+console.log(sum.length);
+
+```
+
+###在ECMAScript5中，prototype是不可枚举的，因此使用for-in是无法发现的###
+
+> 每个函数都包含两个非继承而来的方法：apply和call
+* apply 传入第一个参数改变运行函数的作用域，第二个为函数形参数组
+* call  传入第一个参数改变运行函数的作用域，后续参数为函数形参
+
+```javascript
+window.color = 'red';
+var o = {color: 'blue'};
+
+function sayColor(){
+  console.log(this.color);
+}
+
+sayColor();
+sayColor.call(this);
+sayColor.call(window);
+sayColor.call(o);
+
+```
+
+###ECMAScript5中还定义了一个方法：bind()，这个方法会创建一个函数的实例，其this值会被绑定到传给bind（）函数的值###
+
+```javascript
+var o = {data: 12323};
+var test = function(){
+  console.log(this.data);
+}
+var objTest = test.bind(o);
+objTest();                       //12323
+
+```
+
+#目前支持bind函数的浏览器IE9+、FF4+等现代浏览器#
+
 
 
 
