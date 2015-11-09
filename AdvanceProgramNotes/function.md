@@ -98,9 +98,9 @@ function inner(){
 outer();
 ```
 
-###当函数在严格模式下运行时，访问arguments.callee/arugments.caller都会报错###
+#当函数在严格模式下运行时，访问arguments.callee/arugments.caller都会报错#
 
-###函数的严格模式还有一个限制，不能为函数的caller属性赋值，否则会导致错误###
+#函数的严格模式还有一个限制，不能为函数的caller属性赋值，否则会导致错误#
 
 
 ###5. 函数属性和方法
