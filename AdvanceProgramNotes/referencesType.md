@@ -157,6 +157,46 @@ v.reduce(function(pre, cur, index, arr){return pre + cur;});        //直接求�
 
 ###注意：该方法只有IE9+、FF2+等现代浏览器支持。###
 
+## Date类型
+
+> ECMAScript中的Date类型来自java（java.util.Date），因此也使用UTC（coordinated Universal Time, 国际协调时间）1970年1月1日午夜（零时）开始经过毫秒数来保存日期。使用这种数据存储的条件下，Date日期能够精确到1970年1月1日前后的285616年。
+
+    正常创建一个日期对象，需要使用New和Date构造函数即可。默认情况构造函数不传入参数，新创建的对象自动获取当前日期和时间。
+
+```javascript
+var d = new Date();
+var d2 = new Date(Date.parse('December 18, 2009'));
+```
+
+##如果想通过特定的时间创建日期对象，必须按照UTC规则传入毫秒数来实例化日期对象。为了简化这一计算操作，ECMAScript提供了两个方法对非标准UTC参数进行默认的转换处理：##
+* Date.parse() 接受一个表示日期的字符串参数，然后尝试根据这个字符串返回相应的日期毫秒数
+    + '月/日/年'，如6/13/2004
+    + '英文月名 日，年'，如january 12,2005
+    + '英文星期几 英文月名 日 年 时:分:秒 时区'，如Tue May 23 2010 13:49:45 GMT-0700
+    + ISO 8601扩展格式 YYYY-MM-DDTHH:mm:ss.sssZ（例如：2015-02-21T00:00:00）目前只有兼容ECMAScript5才支持这种格式。
+* Date.UTC() 接收多个表示数值参数。具体参数分别是：年份、基于0到11的月份、1到31的日、时、分、秒等。其中##年份、月份##必填。
+
+```javascript
+var strToD1 = new Date(Date.parse('5/12/2011'));            // new Date('5/12/2011')等价
+var numToD2 = new Date(Date.UTC(2000,1,23,21,12,3));        // new Date(2000, 1, 23, 21,12,3);等价
+var timestampToD3 = new Date(2344343);                      // timestamp 只为一个参数输入时，当成毫秒数计算
+```
+
+> ECMAScript5为了简化当前日期，添加了Date.now()方法。但目前只有现代浏览器支持它：IE9+、FF3+等
+
+```javascript
+var d1 = Date.now();
+var d2 = Date.now();
+var result = d2 -d1; //时间差值
+```
+
+###注意上面代码具有浏览器兼容性问题，通常为了解决此问题。直接采用+好转换日期对象即可###
+```javascript
+var nowD = +new Date();
+```
+
+
+
 
 
 
