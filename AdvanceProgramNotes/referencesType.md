@@ -168,7 +168,7 @@ var d = new Date();
 var d2 = new Date(Date.parse('December 18, 2009'));
 ```
 
-###如果想通过特定的时间创建日期对象，必须按照UTC规则传入毫秒数来实例化日期对象。为了简化这一计算操作，ECMAScript提供了两个方法对非标准UTC参数进行默认的转换处理###：
+如果想通过特定的时间创建日期对象，必须按照UTC规则传入毫秒数来实例化日期对象。为了简化这一计算操作，ECMAScript提供了两个方法对非标准UTC参数进行默认的转换处理：
 
 * Date.parse() 接受一个表示日期的字符串参数，然后尝试根据这个字符串返回相应的日期毫秒数
     + '月/日/年'，如6/13/2004
@@ -196,6 +196,40 @@ var result = d2 -d1; //时间差值
 var nowD = +new Date();
 ```
 
+> Date实例对象中valueOf比较特别，会直接返回毫秒数值。通常可以使用它的毫秒值进行日期比较。
+
+```javascript
+var date1 = new Date(2011,0,3);
+var date2 = new Date(2011,2,1);
+console.log(date1 >date2); //false
+console.log(date1 <date2); //true,转换成毫秒值直接用数值进行比较
+```
+
+###1. 日期组件和方法
+
+> Date类型的方法，都是取得和设置日期值中特定部分的方法。值得注意的是，UTC日期是指在没有时区偏差的情况下（将日期转换为GMT）的日期值。
+
+
+|方法                       | 说明                                                |
+|---------------------------|-----------------------------------------------------|
+|getTime                    |获取整个日期的毫秒值，与valueOf方法相同              |
+|setTime                    |设置日期的毫秒值，会改变整个日期                     |
+|getFullYear                |获取4位年份                                          |
+|setFullYear                |设置年份                                             |
+|getMonth                   |                                                     |
+|setMonth                   |设置月份，参数超过11增加年数                         |
+|getDate                    |1----31                                              |
+|setDate                    |设置日期月份中的天数，超过增加月份                   |
+|getDay                     |获取星期几（0-6）                                    |
+|getHours                   |获取日期中的小时数（0-23）                           |
+|setHours                   |设置小时数，超过则增加年月分钟的天数                 |
+|getMinites                 |获取分钟数（0-59）                                   |
+|setMinites                 |设置分钟数，超过则增加小时数                         |
+|getSeconds                 |返回日期中的秒数（0-59）                             |
+|setSeconds                 |设置日期中的描述，超过则增加分钟数                   |
+|getMilliseconds            |获取日期中的毫秒数                                   |
+|setMilliseconds            |设置日期中的毫秒数                                   |
+|getTimezoneOffset          |返回本地时间与UTC时间相差的分钟数，例如：美国返回300.进入夏令后这个值会有所变化|
 
 
 
