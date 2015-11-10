@@ -14,11 +14,17 @@ var s2 = s1.substring(2);   //自动创建String实例，调用substring方法�
 + 在实例上调用指定的方法
 + 销毁这个实例
 
-可以将以上的三个步骤想象成是执行了一下ECMAScript代码。
+可以将以上的三个步骤想象成是执行了一段ECMAScript代码。
 ```javascript
 var s1 = "some text";
 var tempStr = new String(s1);
 var s2 = tempStr.substring(2);
 tempStr= null;
 ```
+
+***以上的三个操作步骤也分别适用于Boolean和Number类型对应的布尔值和数字值***
+
+-------------------------------------------------------
+
+
 
