@@ -37,6 +37,61 @@ console.log(s1.color);      //undefined
 
 > 对于基本包装类型调用typeof会返回"object"，***特殊的Object构造函数传入基本类型值会自动转换为基本包装类型***
 
+```javascript
+var obj = new Object('some text');
+console.log(obj instanceof String);     //true
+var obj2 = new Object(123);
+console.log(obj2 instanceof Number);    //true
+```
+
+> 注意：***使用new调用基本包装类型的构造函数，与直接调用同名的转型函数是不一样的***
+
+```javascript
+var value = "32";
+var number = Number(value);
+console.log(typeof number);        //"number"
+
+var obj = new Number(value);
+console.log(typeof obj);            //"object"
+```
+
+**这个例子中,number保存的是基本类型值。而obj保存的是Number的包装类型实例**
+
+## Boolean类型
+
+> Boolean类型是与布尔值对应的引用类型。
+
+```javascript
+var falseObject = new Boolean(false);
+var falseValue = false;
+
+console.log(typeof falseObject);      //object
+console.log(typeof falseValue);       //boolean
+console.log(falseObject instanceof Boolean);      //true
+console.log(falseValue instanceof Boolean);       //false
+```
+
+## Number类型
+
+> Number是与数字值对应的引用类型。
+
+***常见的数值包装类型的实用方法***
++ toFixed(decimalDigit) 会按照指定的小数位返回数值的字符串值表示，能够自动四舍五入处理。
++ toExponential(decimalDigit) 会按照指定的小数位返回以指数表示法的数值字符串值表示。
++ toPrecision(digit) 会按照所有数字的位数返回固定大小或指数的格式，自动截断或进位表示。
+
+```javascript 
+var num = 99.32457;
+
+console.log(num.fixed(3));      //"99.325"
+console.log(num.toExponential(2));  //"9.93e+1"
+console.log(num.toPrecision(1));    //1e+2"
+```
+
+### String类型
+
+> String类型是字符串的对象包装类型。
+
 
 
 
