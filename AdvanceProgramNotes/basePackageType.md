@@ -88,9 +88,76 @@ console.log(num.toExponential(2));  //"9.93e+1"
 console.log(num.toPrecision(1));    //1e+2"
 ```
 
-### String类型
+## String类型
 
 > String类型是字符串的对象包装类型。
+
+***String对象的方法也可以在所有的基本字符串值中访问到。其中继承的valueOf（）、toLocaleString（）和toString（）方法，都返回对象所表示的基本字符串值***
+
+```javascript
+var stringObj = new String('hello World');
+console.log(stringObj.toString());
+console.log(stringObj.valueOf());
+```
+
+> length属性, String类型的每一个实例都有一个length属性，表示字符串中包含多个字符。***即使字符串中包含双字节字符（不是占一个字节的ASCII字符），每个字符也仍然算一个字符***。
+
+```javascript
+var s = new  String('sdsd多岁的ff');
+console.log(s.length);              //9
+```
+
+
+###1. 字符方法
+
+> 用于访问字符串中特定字符的方法：
++ charAt(index) 以单字符字符串的形式返回给定位置的那个字符
++ charCodeAt(index) 返回给定位置的那个字符的字符编码
+
+```javascript
+var stringValue = "teacher";
+console.log(stringValue.charAt(1));     //"t",注意是单字符串值
+console.log(stringValue.charCodeAt(1)); //"101",字符编码
+```
+
+***ECMAScript5中还定义了另一个访问个别字符串的方法。在支持此方法的浏览器中，可以使用括号加数字索引来访问字符串中的特定字符，目前支持的浏览器IE8+以及其他浏览器***
+
+```javascript
+var str = "technology";
+console.log(str[1]);        // "e"
+```
+
+###2. 字符串操作方法
+
+> 常用的字符串操作方法
++ concat(str,...) 将一个字符串或多个字符串拼接起来，返回拼接得到的新字符串。与实用**+**相同。
++ slice(startIdx, endIdx) 传入一个或两个参数, 返回操作字符串的一个子字符串。
++ substr(startIdx, length) 传入一个或两个参数，返回操作字符串的一个子字符串。
++ substring(startIdx, endIdx) 传入一个或两个参数，返回操作字符串的一个子字符串。
+
+```javascript
+var str = "hello world";
+console.log(str.slice(-3));     // rld
+console.log(str.substring(-3)); //hello world
+console.log(str.substr(-3));    //rld
+
+console.log(str.slice(3, -4));  //lo w
+console.log(str.substring(3, -4));  //hel
+console.log(str.substr(3, -4));     //""
+```
+
+区别：
++ slice和substr传入第一个参数传入负值，会自动加上length * N + index来使用。而substring传入负值直接转换为0使用。
++ 当第二个参数为负值时，slice方法会自动加上length * N + index; substr和substring都会自动转换为0。而substring会自动从小的位置开始；substr则不会，直接返回空字符串。
+
+###3. 字符串位置方法
+
+> 查找子字符串的两个常用方法：
++ indexOf(str, srchIdx)
++ lastIndexOf(str, srchIdx)
+
+
+
 
 
 
