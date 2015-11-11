@@ -295,6 +295,17 @@ console.log(str.localeCompare("zoom"));     //-1
 
 ***该方法优势在于实现所支持的地区（国家和语言）决定了这个方法的行为***
 
+###8. fromCharCode()方法
+
+> String构造函数本身的一个静态方法，处理一或多个字符编码，然后将他们转换为一个字符串。从本质上来看，这个方法与实例方法charCodeAt执行的是相反的操作。
+
+```javascript
+console.log(String.fromCharCode(104,101,108,108,111));    //"hello"
+```
+
+###9. HTML方法 （已废弃）
+
+
 
 
 
