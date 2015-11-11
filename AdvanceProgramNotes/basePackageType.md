@@ -263,7 +263,8 @@ function htmlEscape(text){
   });
 }
 
-console.log(htmlEscape("<p clas=\"myClass\"> hello my world </p>"));   //&lt;p clas=&quot;myClass&quot;&gt; hello my world &lt;/p&gt;
+console.log(htmlEscape("<p clas=\"myClass\"> hello my world </p>"));   
+//&lt;p clas=&quot;myClass&quot;&gt; hello my world &lt;/p&gt;
 
 ```
 
