@@ -50,6 +50,61 @@ console.log(decodeURIComponent(encodeComponentUri));
 console.log(dencodeURI(encodeuri));
 ```
 
+##1.2 eval()方法
 
+> ECMAScript语言中最强大的一个方法：eval()，它就像一个完整的ECMAScript解析器，它只接受一个参数，即要执行的ECMAScript（javascipt）字符串。
+
+```javascript 
+eval("console.log('hi')");
+
+var msg = "hello world";
+eval("console.log(msg)");
+
+eval("function sayHi(){console.log("hello");}");
+sayHi();
+```
+
+***当解析器发现代码中调用eval()方法时，它会将传入的参数当做实际的ECMAScript语句来解析，然后把执行结果插入到原位置。通过eval（）执行的代码被认为是包含该次调用的执行环境的一部分，具有与该执行环境相同的作用域链。即：可以引用执行环境中定义的变量***
+
+> 在eval()中创建的任何变量或函数都不会被提升，因为在解析代码的时候，他们被包含在一个字符串中；他们只在eval()执行的时候创建。
+
+```javascript
+eval("var msg = 'hello world'");
+console.log(msg);
+```
+
+***严格模式下，在外部访问不到eval()中创建的任何变量或函数，因此前面两个例子都会导致错误；同样，在严格模式下，为eval赋值也会导致错误：***
+
+```javascript
+'use strict'
+eval = "hi";        // causes error
+```
+
+##1.3 Global对象的属性
+
+> Global 对象还包含一些属性：
+
+|属性       |说明         |
+|-----------|-------------|
+|undefined  |特殊值undefined   |
+|NaN        |特殊值NaN         |
+|Infinity   |特殊值Infintiy    |
+|Object     |构造函数Object          |
+|Array      |构造函数Array          |
+|Function   |构造函数Function          |
+|Boolean    |构造函数Boolean          |
+|String     |构造函数String          |
+|Number     |构造函数Number          |
+|Date       |构造函数Date          |
+|RegExp     |构造函数RegExp          |
+|Error      |构造函数Error          |
+|EvalError  |构造函数EvalError          |
+|RangeError |构造函数RangeError          |
+|ReferenceError   |构造函数ReferenceError          |
+|SyntaxError      |构造函数SyntaxError          |
+|TypeError        |构造函数TypeError          |
+|URIError         |构造函数URIError          |
+
+***ECMAScript5明确禁止给undifined、NaN和Infinity赋值，这样做即使在非严格模式下也会导致错误***
 
 
