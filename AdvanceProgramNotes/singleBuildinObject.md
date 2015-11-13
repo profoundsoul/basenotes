@@ -152,3 +152,41 @@ Math对象包含的属性大都是数学计算中可能会用到一些特殊值�
 |Math.SQRT1_2     |1/2的平方根（即2的平方根的倒数）|
 |Math.SQRT2       |2的平方根                       |
 
+###2.2 min()和max()方法
+
+> min()和max()方法用于确定一组数值中的最小值和最大值
+
+```javascript
+var max = Math.max(3,74,32,2,43);
+console.log(max);
+
+var min = Math.min(5,3,6,2,676,233);
+console.log(min);
+
+var arr = [23,35,3,2,4,63,5,45,67];
+console.log(Math.min.apply(Math, arr));
+console.log(Math.max.apply(Math, arr));
+```
+
+***实用技巧：把Math对象作为apply()的第一个参数，从而正确的设置this值，可以将任何数组作为第二个参数传入***
+
+###2.3 舍入方法
+
+> 小数值舍入为整数的几个方法:
++ Math.ceil() 执行向上舍入，即它总是将数值向上舍入为最接近的整数；
++ Math.floor() 执行向下舍入，即它总是将数值向下舍入为最接近的整数；
++ Math.round() 执行标准舍入，即它总是将数值四舍五入为最接近的整数（常见舍入规则）；
+
+```javascript
+console.log(Math.ceil(23.9));
+console.log(Math.ceil(23.5));
+console.log(Math.ceil(23.1));
+
+console.log();
+console.log();
+console.log();
+
+console.log();
+console.log();
+console.log();
+```
