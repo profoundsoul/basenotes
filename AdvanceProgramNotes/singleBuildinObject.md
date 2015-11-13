@@ -182,11 +182,53 @@ console.log(Math.ceil(23.9));
 console.log(Math.ceil(23.5));
 console.log(Math.ceil(23.1));
 
-console.log();
-console.log();
-console.log();
+console.log(Math.floor(23.9));
+console.log(Math.floor(23.5));
+console.log(Math.floor(23.1));
 
-console.log();
-console.log();
-console.log();
+console.log(Math.round(23.9));
+console.log(Math.round(23.5));
+console.log(Math.round(23.1));
 ```
+
+###2.4 random方法
+
+> 用于返回大于等于0小于1的一个随机数。
+
+```javascript
+var num = Math.floor(Math.random() * 9 + 2);      //取2到10之间的随机整数
+
+var selectFrom = function(lowValue, upperValue){
+  var range = upperValue - lowValue + 1;
+  return Math.floor(Math.random() * range + lowValue);
+};
+var arr = ['red', 'green', 'blue', 'white', 'yellow'];
+arr[selectFrom(0, arr.length -1)];
+
+```
+
+***上面selectFrom函数是通用的取随机数规则，具有很强的实用价值***
+
+###2.5 其它方法
+
+> Math对象中还包含其它一些与完成各种简单或复杂计算的有关方法
+
+|方法                   |说明                                     |
+|-----------------------|-----------------------------------------|
+|Math.abs(num)          |返回num的绝对值                          |
+|Math.exp(num)          |返回Math.E的num次幂                      |
+|Math.log(num)          |返回num的自然对数                        |
+|Math.pow(num, power)   |返回num的power次幂                       |
+|Math.sqrt(num)         |返回num的平方根                          |
+|Math.acos(x)           |返回x的反余弦值                          |
+|Math.asin(x)           |返回x的反正弦值                          |
+|Math.atan(x)           |返回x的反正切值                          |
+|Math.atan2(y,x)        |返回y/x的反正弦值                        |
+|Math.cos(x)            |返回x的余弦值                            |
+|Math.sin(x)            |返回x的正弦值                            |
+|Math.tan(x)            |返回x的正切值                            |
+
+
+
+
+
