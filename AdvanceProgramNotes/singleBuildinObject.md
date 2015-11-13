@@ -25,7 +25,7 @@
 + parseInt
 + parseFloat
 
-##1.1 URI编码方法
+###1.1 URI编码方法
 
 > 对URI（Uniform Resource Identifiers，通用资源标识符）进行编码，以便发送给浏览器。有效的URI中不能包含某些特殊字符（空格等），它们用特殊的UTF-8编码替换所有无效的字符，从而让浏览器能够接受和理解。
 
@@ -50,7 +50,7 @@ console.log(decodeURIComponent(encodeComponentUri));
 console.log(dencodeURI(encodeuri));
 ```
 
-##1.2 eval()方法
+###1.2 eval()方法
 
 > ECMAScript语言中最强大的一个方法：eval()，它就像一个完整的ECMAScript解析器，它只接受一个参数，即要执行的ECMAScript（javascipt）字符串。
 
@@ -80,7 +80,7 @@ console.log(msg);
 eval = "hi";        // causes error
 ```
 
-##1.3 Global对象的属性
+###1.3 Global对象的属性
 
 > Global 对象还包含一些属性：
 
@@ -107,4 +107,48 @@ eval = "hi";        // causes error
 
 ***ECMAScript5明确禁止给undifined、NaN和Infinity赋值，这样做即使在非严格模式下也会导致错误***
 
+###1.4 window对象
+
+> ECMAScript虽然没有指出如何直接访问Global对象，但**Web浏览器都是将这个全局对象作为window对象的一部分加以实现**。因此，在全局作用域中声明的所有变量和函数，都变成了window对象的属性。
+
+```javascript
+var color = 'red';
+function sayColor(){
+  console.log(window.color);
+}
+window.sayColor();
+
+```
+
+> JavaScript中window对象除了扮演ECMAScript规定的Global对象的角色外，还承担了很多别的任务。
+
+```javascript
+var global = function(){
+  return this;
+}();
+```
+
+一个立即调用的函数表达式，返回this值。
+
+***如前所述，在没有给函数明确指定this值得情况下（无论是通过将函数添加为对象的方法，还是通过调用call()或apply()）,this值等于Global对象。而通过这种简单地返回this来取得Global对象，在任何环境下都是可以执行的***
+
+
+##2. Math对象
+
+> ECMAScript还为保存数学公式和信息提供了一个公共位置，即Math对象。与我们在javaScript直接编写的计算功能相比，Math对象提供的计算功能执行起来要快得多。
+
+###2.1 Math对象的属性
+
+Math对象包含的属性大都是数学计算中可能会用到一些特殊值，如下：
+
+|属性             |说明                          |
+|-----------------|------------------------------|
+|Math.E           |自然对数的底数，即常量e的值   |
+|Math.LN10        |10的自然对数                  |
+|Math.LN2         |2的自然对数                   |
+|Math.LOG2E       |以2为底e的对数                |
+|Math.LOG10E      |以10为底e的对数               |
+|Math.PI          |∏的值                           |
+|Math.SQRT1_2     |1/2的平方根（即2的平方根的倒数）|
+|Math.SQRT2       |2的平方根                       |
 
