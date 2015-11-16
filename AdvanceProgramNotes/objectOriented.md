@@ -148,6 +148,48 @@ Object.defineProperties(book, {
 
 ###3. 读取属性的特性
 
+> 使用ECMAScript5的Object.getOwnPropertyDescriptor()方法，可以取得给定属性的描述符；（访问器属性集合或数据属性集合）。这个方法接收两个参数：
++ 对象所在的属性
++ 要读取其描述符的属性名称
+
+```javascript
+var book = {};
+Object.defineProperties(book, {
+  _year:{
+    value: 2004
+  },
+  edition: {
+    value: 1
+  },
+  year: {
+    get : function(){
+      return this._year;
+    },
+    set: function(newValue){
+      if(newValue >2004){
+        this._year = newValue;
+        this.edition += newValue - 2004;
+      }
+    }
+  }
+});
+
+var descriptor  = Object.getOwnPropertyDescriptor(book, '_year');
+console.log(descriptor.value);      //2004
+console.log(descriptor.configurable); // false
+console.log(descriptor.get);          //"undefined"
+
+descriptor = Object.getOwnPropertyDescriptor(book, 'year');
+console.log(descriptor.value);        //undefined
+console.log(descriptor.configurable);   //false
+console.log(descriptor.get);            //function
+
+```
+
+***在javascript中，可以针对任何对象----包括Dom和Bom对象，使用Object.getOwnPropertyDescriptor()方法。支持这个方法的浏览器：IE9+、FF4+、Safari5+、Opera12+和Chrome***
+
+
+
 
 
 
