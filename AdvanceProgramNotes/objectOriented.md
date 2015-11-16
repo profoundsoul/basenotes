@@ -140,6 +140,7 @@ Object.defineProperties(book, {
     }
   }
 });
+```
 
 *上述代码中定了两个数据属性（_year和edition）和一个访问器属性（year）。唯一的区别就是这些属性都是在同一时间创建的*
 
@@ -149,7 +150,7 @@ Object.defineProperties(book, {
 
 
 
-```
+
 
 
 
