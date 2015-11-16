@@ -77,5 +77,80 @@ person.age = 11;          //error
 
 ***为age赋值时,由于age是只读的。如果给它指定新值，在严格模式下，赋值报错；非严格模式下，赋值被忽略***
 
+*在使用了Object.defineProperty()方法修改统一属性，但把configurable设置为false后限制除writable外的其它特性修改了；另外如果不指定其它特性，configurable、enumerable、writable特性的默认值都会变成false。*
+
+
+####1.2 访问器属性
+
+> 访问器属性不包含数据值；他们包含一对getter和setter函数（这两个函数都不是必须的）。读取访问器属性时，会调用getter函数返回有效的值；在写入访问器属性时，会调用setter函数并传入新值并决定如何处理数据。主要有如下4个特性：
++ [[Configurable]]：能够通过delete删除属性从而重新定义属性，能够修改属性的特性，能够把属性修改为数据属性。直接在对象上定义的属性，默认值为true。
++ [[Enumerable]]：表示能否通过for-in循环返回属性。直接在对象上定义的属性，默认值为true
++ [[Get]]：在读取属性时调用的函数。默认值为undefined
++ [[Set]]: 在写入属性时调用的函数。默认值为undefined
+
+```javascript
+var book = {
+  _year: 2004,
+  edition: 1
+};
+Object.defineProperty(book, "year", {
+  get:function(){
+    return this._year;
+  },
+  set: function(newValue){
+    if(newValue <1970){
+      this._year = 1970
+    }else{
+      this._year = newValue;
+    }
+  }
+});
+```
+
+
+***不一定非要同时制定getter和setter。只制定getter以为着属性时不能写，尝试写入属性被忽略。严格模式时，只读只写被访问时，均会报错***
+
+*支持ECMAScript5的这个方法的浏览器有IE9+、FF4+、Safari5+和Chrome等*
+
+
+###2. 定义多个属性
+
+> 由于对对象定义多个属性的可能性很大，ECMAScript5又定义了一个Object.defineProperties()方法。该方法可以通过描述符一次定义多个属性。
++ 第一个参数：对象要添加和修改其属性的对象
++ 第二个参数：对象的属性和第一个对象对象中要添加或修改的属性一一对应。
+
+```javascript 
+var book = {};
+Object.defineProperties(book, {
+  _year:{
+    value: 2004
+  },
+  edition: {
+    value: 1
+  },
+  year: {
+    get : function(){
+      return this._year;
+    },
+    set: function(newValue){
+      if(newValue >2004){
+        this._year = newValue;
+        this.edition += newValue - 2004;
+      }
+    }
+  }
+});
+
+*上述代码中定了两个数据属性（_year和edition）和一个访问器属性（year）。唯一的区别就是这些属性都是在同一时间创建的*
+
+***支持Object.defineProperties()方法的浏览器：IE9+、FF4+、Safari5+、Opera12+和Chrome***
+
+###3. 读取属性的特性
+
+
+
+```
+
+
 
 
