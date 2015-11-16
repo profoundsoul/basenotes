@@ -75,7 +75,40 @@ console.log(p1 instanceof Person); //true
 + 任何函数只要通过new操作符来调用，那么它就是作为构造函数
 + 任何函数如果不过通过new操作符来调用，那么它就和普通函数也不会有什么两样。
 
+```javascript
+var p2 = new Person('linq', 32, 'Programer');
+p2.sayName();   // linq
 
+Person('Greg', 27, 'Doctor');   //当前执行环境this为window
+window.sayName();           //"Greg"
+
+//在另一个对象的作用域中调用
+var o = new Object();
+Person.call(o, 'Kristen', 25, 'Nurse');
+o.sayName();
+
+```
+
+###2.2 构造函数的问题
+
+> 构造函数模式虽然好用，但每个实例的方法都要在实例上创建一遍。但创建两个完成同样任务的Function实例的确没有必要
+
+```javascript
+function Person(name, age, job){
+  this.name = name;
+  this.age = age;
+  this.job = job;
+  this.sayName = sayName;
+}
+
+function sayName(){
+  console.log(this.name);
+}
+
+var p1 = new Person('Nicholas', 23, 'Software Engineer');
+var p2 = new Person('Greg', 27, 'Doctor');
+
+```
 
 
 
