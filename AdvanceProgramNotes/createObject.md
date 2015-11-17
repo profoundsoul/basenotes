@@ -201,6 +201,10 @@ console.log(p1.hasOwnProperty('age'));        // false
 
 ###3.2 原型与in操作符
 
+> 有两种方式使用in操作符:
++ 单独使用,通过对象能够访问给定的属性时返回true，无论是实例还是原型中
++ 在for-in循环中使用。
+
 
 
 
