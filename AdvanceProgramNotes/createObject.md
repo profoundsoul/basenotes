@@ -142,4 +142,6 @@ console.log(p1.sayName === p2.sayName);         // true
   
 如下图：
 
+![](images/prototypeRelation.png)
+
 
