@@ -162,6 +162,49 @@ console.log(Object.getPrototypeOf(p1) === Person.prototype);      //true
 console.log(Object.getPrototypeOf(p2).name);                      //linq
 ```
 
+#### 多实例共享原型所保存的属性和方法基本原理
+
+> 当代码执行某个对象的属性时，从实例本身开始搜索具有给定名字的属性。如果存在，返回该属性值；如果不存在，则继续搜索指针指向的原型对象是否具有给定名字的属性；如果存在，返回属性值；不存在则继续搜索指针指向的原型对象直到找返回或到Object.prototype为止。
+
+```javascript 
+function Person(){}
+Person.prototype.name = 'linq';
+
+var p1 = new Person();
+var p2 = new Person();
+p1.name = 'wangs';
+
+console.log(p1.name);     //来自实例本身
+console.log(p2.name);     //来自于原型
+
+//通过delete实例属性可以让实例继续访问原型属性
+delete p1.name;
+console.log(p1.name);     //来自原型
+
+```
+
+***实例属性、方法优先于原型共享属性方法，当实例添加新属性时，自动屏蔽原型属性；若删除（delete）实例属性时，又能重新访问原型属性***
+
+#### hasOwnProperty()方法
+
+> 检测一个属性是否存在于实例中，还是存在于原型中（该方法是从Object中继承而来）。若是来自实例，返回true；否则返回false。
+
+```javascript
+var p1 = new Person();
+p1.name = 'test';
+console.log(p1.hasOwnProperty('name'));       // true
+console.log(p1.hasOwnProperty('age'));        // false
+
+```
+
+***ECMAScript5中的Object.getOwnPropertyDescriptor()方法只能适用实例属性；要取得原型属性的描述符，必须在原型对象上调用Object.getOwnPropertyDescriptor()方法***
+
+###3.2 原型与in操作符
+
+
+
+
+
 
 
 
