@@ -134,7 +134,7 @@ console.log(p1.sayName === p2.sayName);         // true
 ```
 ***p1和p2共享同一个sayName方法***
 
-###2.1 理解原型对象
+###3.1 理解原型对象
 
 > 无论什么时候，只要创建了一个新函数，就会根据一组特定的规则为该函数创建一个prototype属性，这个属性指向函数的原型对象。默认情况下，所有的原型对象都会自动获得一个constructor(构造函数)属性，这个属性包含一个指向prototype属性所在的函数指针。
 + 当调用构造函数创建一个新实例后，该实例的内部将包含一个指针（内部属性[[prototype]]）,指向构造函数的原型对象。
@@ -143,5 +143,27 @@ console.log(p1.sayName === p2.sayName);         // true
 如下图：
 
 ![](images/prototypeRelation.png)
+
+#### isPrototypeOf 
+
+> 虽然所有的实现中都无法访问到[[prototype]]、但可以通过isPrototypeOf()方法来确定对象之前是否存在这种关系。
+
+```javascript
+console.log(Person.prototype.isPrototypeOf(p1));//true
+console.log(Person.prototype.isPrototypeOf(p2));//true
+```
+
+#### Object.getPrototypeOf()
+
+> ECMAScript5中增加了一个新方法：Object.getPrototypeOf()能够直接返回[[prototype]]的值
+
+```javascript
+console.log(Object.getPrototypeOf(p1) === Person.prototype);      //true
+console.log(Object.getPrototypeOf(p2).name);                      //linq
+```
+
+
+
+
 
 
