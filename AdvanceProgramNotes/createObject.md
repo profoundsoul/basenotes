@@ -457,7 +457,7 @@ function Person(name,age,job){
   return o;
 }
 ```
-***适合在安装的执行环境中，例如：ADsafe、Caja环境***
+***适合在安全的执行环境中，例如：ADsafe、Caja环境***
 
 
 
