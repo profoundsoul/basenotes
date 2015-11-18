@@ -341,12 +341,124 @@ friend.sayName();       //error
 
 ![](images/rewriteprototype.png)
 
-> 
+###3.5 原型对象的问题
 
+> 原型模式也不是没有缺点，主要缺点有两个：
++ 它省略了为构造函数传递参数初始化参数这一环节，所有实例在默认情况下都取相同的默认原型值
++ 引用类型的共享特性问题。尤其是Array等类型容易导致原型引用属性发生变化，造成对其它实例共享的问题。
 
+```javascript
+function Person(){}
 
+Person.prototype={
+  constructor: Person,
+  name : 'sss',
+  age :33,
+  friends: ["Shelby", "Court"],
+  sayName: function(){
+    console.log(this.name);
+  }
+}
 
+var p1 = new Person();
+var p2 = new Person();
 
+p1.friends.push("linq");
+
+console.log(p2.friends);  //"Shelby,"Court","linq"
+```
+
+***实例一般都是要有属于自己的全部属性的，因此很少看到有人单独使用原型模式的原因所在***
+
+##4. 组合使用构造函数模式和原型模式
+
+> 创建自定义类型的最常见的方式，就是组合使用构造函数模式与原型模式。兼顾两种模式之长：
++ 支持构造函数传递参数
++ 支持属性方法共享
+
+```javascript
+function Person(name, age, job){
+  this.name = name;
+  this.age = age;
+  this.job = job;
+  this.friends = ["Shelby", "Court"];
+}
+
+Person.prototype = {
+  constructor: Person,
+  sayName : function(){
+    console.log(this.name);
+  }
+}
+
+var p1 = new Person('linq',32, "Software Engineer");
+var p2 = new Person('Greg', 25, "Doctor");
+p1.friends.push("Van");
+
+console.log(p1.friends == p2.friends);
+console.log(p2.sayName == p2.sayName);
+```
+
+***目前在ECMAScript中使用最广泛、认同度最高的一个种创建自定义类型的方法***
+
+##5. 寄生构造函数模式
+
+> 可以使用寄生（parasitic）构造函数模式。这种模式的基本思想是创建一个函数，该函数的作用仅仅是封装创建对象的代码，然后在返回新建的对象。
+
+```javascript
+function Person(name, age, job){
+  var o = new Object();
+  o.name = name;
+  o.age = age;
+  o.job = job;
+  o.sayName = function(){
+    console.log(this.name);
+  };
+}
+
+var friend = new Person('Nicholas', 33, 'Software Engineer');
+friend.sayName();
+
+```
+
+***这种除了使用new操作符并把使用的包装函数叫做构造函数之外，跟工厂模式其实是一模一样的***
+
+#### 实用场景
+
+> 这种模式可以在特殊情况下用来为对象创建构造函数。例如：特殊的数组对象
+
+```javascript
+function SpecialArray(){
+  var values = new Array();
+  values.push.apply(values, arguments);
+  values.toPipedString = function(){
+    return this.join("|");
+  };
+  return values;
+}
+
+var colors = new SpecialArray('red', 'blue', 'green');
+console.log(colors.toPipedString());
+
+```
+
+*** 返回的对象与构造函数或者构造函数的原型属性对象之间没有关系；一般情况下不建议使用这种模式***
+
+##6. 稳妥构造函数模式
+
+> 稳妥对象指没有公共属性，其方法也不引用this的对象。适合在一些安全的环境中使用（禁用this和new）或者防止数据被其它应用程序改动时使用。
+
+```javascript
+function Person(name,age,job){
+  var o = new Object();
+  o.sayName = function(){
+    console.log(name);
+  };
+  return o;
+}
+
+***适合在安装的执行环境中，例如：ADsafe、Caja环境
+```
 
 
 
