@@ -205,6 +205,144 @@ console.log(p1.hasOwnProperty('age'));        // false
 + 单独使用,通过对象能够访问给定的属性时返回true，无论是实例还是原型中
 + 在for-in循环中使用。
 
+```javascript
+function Person(){}
+
+Person.prototype.name = "Nicholas";
+Person.prototype.age  = 23;
+
+var p1 = new Person();
+p1.name = "linq";
+
+console.log("name" in p1);      //true
+console.log("age" in p1);       //true
+
+// 是否为原型属性
+function hasPrototypeProperty(obj, name){
+  return !obj.hasOwnProperty(name) && (name in obj);
+}
+
+console.log(hasPrototypeProperty(p1, "name"));      // false
+console.log(hasPrototypeProperty(p1, "age"));      // age
+```
+
+#### for-in循环使用时
+
+> 循环使用时，返回的是所有能够通过对象访问的、可枚举的属性。屏蔽了原型中不可枚举属性（即：[[Enumerable]]标记为false的属性）
+
+```javascript
+var o = {
+  toString: function(){
+    return "my Object";
+  }
+}
+
+for(var prop in o){
+  if(prop == "toString"){
+    console.log("Found toString");        //IE中存在Bug，其它的均会显示
+  }
+}
+
+```
+
+#### Object.keys()
+
+> ECMAScript5规定的Object.keys()方法取可枚举的实例属性名称，返回一个包含所有可枚举属性的字符串数组
+
+```javascript
+function Person(){}
+
+Person.prototype.name="linq";
+Person.prototype.age = 45;
+Person.prototype.job = "testaa";
+Person.prototype.sayName = function(){
+    console.log(this.name);
+};
+
+var keys = Object.keys(Person.prototype);
+console.log(keys);    //"name,age,job,sayName"
+
+var p1 = new Person();
+p1.name = "linq2";
+p1.age = 64;
+var plKeys = Object.keys(p1);
+console.log(plKeys);  //"name,age"
+
+```
+
+***只能获取对象上所有可枚举的实例属性***
+
+#### Object.getOwnPropertyNames()
+
+> ECMAScript5中增加该方法，得到所有的实例属性，**无论它是否可枚举**
+
+```javascript
+var keys = Object.getOwnPropertyNames(Person.prototype);
+console.log(keys);    // "constructor,name, age, job, sayName"
+```
+
+###3.3 更简单的原型写法
+
+> 为了减少不必要的输入，从视觉上更好的封装原型的功能。从字面量来重写整个原型对象。
+
+```javascript
+Person.prototype = {
+  name: 'yeah',
+  age : 35,
+  job : 'Engineer',
+  sayName: function(){
+    console.log(this.name);
+  }
+}
+
+var f = new Person();
+
+console.log(f.constructor == Person);     //false
+console.log(f.constructor == Object);     //true
+
+
+//如果constructor确实很重要，可以考虑使用ECMAScript5中的Object.defineProperty重设置constructor
+Object.defineProperty(Person.prototype, "constructor", {
+  enumerable: false,
+  value: Person
+});
+```
+
+***代码上来看与Person.property.属性没有什么区别，但依然有两个区别：***
++ *constructor属性不在指向Person*
++ *在重设原型prototype对象之前已经实例化的对象内部[[prototype]]指向之前原型对象*
+
+###3.4 原型的动态性
+
+> 由于在原型中查找值得过程是一次搜索，因此任何修改都可以从实例中提现出来，但如果重写原型对象，那么情况就不一样了
++ 最初构造函数会为实例添加一个指向最初原型的[[prototype]]的指针
++ 原型对象修改为另一个对象等于切断了构造函数与最初原型之间的联系
+
+```javascript
+function Person(){}
+
+var friend = new Person();
+
+Person.prototype = {
+  constructor: Person,
+  name : 'Nicholas',
+  age :35,
+  job: 'Software Engineer',
+  sayName : function(){
+    console.log(this.name);
+  }
+};
+
+friend.sayName();       //error
+```
+
+如下图展示这个过程的内幕：
+
+
+![](images/rewriteprototype.png)
+
+> 
+
 
 
 
