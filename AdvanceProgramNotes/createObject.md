@@ -414,6 +414,7 @@ function Person(name, age, job){
   o.sayName = function(){
     console.log(this.name);
   };
+  return o;
 }
 
 var friend = new Person('Nicholas', 33, 'Software Engineer');
