@@ -37,6 +37,14 @@ var instance = new SubType();
 原型继承关系图如下：
 ![](images/prototypeextend.png)
 
+### 1.1 别忘记默认的原型
+
+> 事实上，前面的原型连少了一环。我们都知道所有的引用类型都是继承自Object类型，而这个继承也是通过原型链实现的。***所有函数的默认原型都是Object的实例，默认原型都会包含一个内部指针，指向Object.prototype***。
+
+完整原型连关系图如下：
+
+![](images/entryprototypeextend.png)
+
 
 
 
