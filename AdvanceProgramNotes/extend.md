@@ -34,6 +34,10 @@ var instance = new SubType();
 
 ```
 
+原型继承关系图如下：
+![](images/prototypeextend.png)
+
+
 
 
 
