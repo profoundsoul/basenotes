@@ -14,5 +14,27 @@
 
 > 原型链基本思想是利用原型让一个引用类型继承另外一个引用类型的属性和方法。
 
+```javascript
+function SuperType(){
+  this.property = false;
+}
+
+SuperType.prototype.getProperty = function(){
+  return this.property;
+};
+
+function SubType(){
+  this.property = true;
+}
+
+//此时SubType 继承了SuperType
+SubType.prototype = new SuperType();
+
+var instance = new SubType();
+
+```
+
+
+
 
 
