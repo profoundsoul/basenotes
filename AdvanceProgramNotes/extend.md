@@ -45,8 +45,49 @@ var instance = new SubType();
 
 ![](images/entryprototypeextend.png)
 
+###1.2 确定原型与实例之间的关系
+
+> 可以通过两种方式来确认原型与实例之间的关系：
++ instanceOf 用来测试实例与原型链中出现过的构造函数，都会返回True
++ isPrototypeOf 测试原型链中出现过的原型，都会返回True
+
+```javascript
+console.log(instance instanceOf Object);
+console.log(instance instanceOf SuperType);
+console.log(instance instanceOf SubType);
+
+console.log(Object.prototype.isPrototypeOf(instance));
+console.log(SuperType.prototype.isPrototypeOf(instance));
+console.log(SubType.prototype.isPrototypeOf(instance));
+```
+
+###1.3 谨慎的定义方法
+
+> 添加原型属性、方法一定要放在替换原型语句之前，否则属性和方法都会失效。
+
+```javascript
+SubType.prototype.addType = function(){
+  console.log('add type success');
+};
+
+//此句代码会导致上一句代码失效
+SubType.prototype={
+  type : 11,
+  sayName : function(){
+    console.log(this.type);
+  }
+};
+
+```
+
+***SubType.prototype替换后，addType方法会丢失***
 
 
+###1.4 原型链的问题
+
+> 原型链的问题，主要来自原型中，主要是两个问题：
++ 引用属性，一旦原型中存在引用类型的属性，所有的实例都会共享该属性。
++ 创建子类实例时，不能向超类构造函数中传入参数
 
 
 
