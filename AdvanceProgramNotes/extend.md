@@ -90,4 +90,141 @@ SubType.prototype={
 + 创建子类实例时，不能向超类构造函数中传入参数
 
 
+##2. 借用构造函数
+
+> 在解决原型中包含引用类型值所带来的问题的过程中，开发人员开始使用一种叫做**借用构造函数**的技术。即：在子类构造函数的内部调用超类的构造函数。通过call或apply在新创建的对象上执行构造函数。
+
+```javascript
+var SuperType = function()(){
+  this.colors = ['red','green','blue'];
+}
+
+function SubType(){
+  SuperType.apply(this, arguments);
+}
+
+//实例化对象，会自动执行超类的构造函数，在当前执行环境中
+//instance实例中会存在colors属性
+var instance = new SubType();
+
+console.log(instance.colors);
+
+
+```
+
+###2.1 优势
+
+> 相对原型链而言，构造函数有一个很大的优势，即可在子类构造函数中向超类构造 函数传递参数。确保不会在向父类中添加构造函数中添加的属性和方法。
+
+
+###2.2 借用构造函数的劣势
+
+> 无法避免构造函数模式存在的问题---方法都在构造函数中定义，函数/属性的复用无从谈起
+
+
+##3. 组合继承（原型链和构造函数组合）
+
+> 指将原型链和借用构造函数的技术组合到一块，从而发挥两者之长的一种继承模式。核心思想：使用原型链实现原型属性和方法的继承，而借助构造函数用来实现对实例属性的继承。
+
+
+```javascript
+function SuperType(name){
+  this.name = name;
+  this.colors = ['red','green'];
+}
+
+function SubType(name, age){
+  Super.call(this, name);
+  this.age = age;
+}
+
+SubType.prototype = new SuperType();
+SubType.prototype.constructor = SubType;
+SubType.prototype.sayAge = function(){
+  console.log(this.age);
+};
+
+var instance1 = new SubType('linq',25);
+instance1.color.push('white');
+
+var instance2 = new SubType('daivd', 30);
+console.log(instance2.colors);
+
+
+```
+
+***最常用的模式，但并非最优的继承模式[也有自己的缺陷]***
+
+##4. 原型式继承
+
+> 没有严格意义上的构造函数。它的思想是借助原型可以基于已有的对象创建新对象，同时还不必因此创建自定义类型。给了达到这个目的，基础实现如下：
+
+```javascript
+function object(o){
+  var F = function(){};
+  F.prototype = o;
+  return new F();
+}
+
+
+```
+
+> 要求必须有一个对象作为另外一个对象的基础，如果有一个对象的话，可以把它传递给object()函数，然后再根据需求对得到的对象加以修改即可。
+
+```javascript
+var person = {
+  name: 'Nicholas',
+  friends:['Shelby', 'Court', 'Van']
+};
+
+var anotherPerson = object(person);
+anotherPerson.name = "Greg";
+anotherPerson.friends.push('Rob');
+
+var yetPerson = object(person);
+yetPerson.name = 'Linda';
+yetPerson.friends.push('Barbie');
+
+//["Shelby", "Court", "Van", "Rob", "Barbie"]
+console.log(yetPerson.friends);
+```
+
+
+> ECMAScript5中通过新增object.create()规范了原型式继承，接受两个参数：
++ 一个用作新对象原型的对象，与上面object方法一致。
++ 一个座位新对象定义的额外属性的对象（可选），与object.definePropertys()中的参数相同
+
+```javascript
+var anotherPerson = object.create(person, {
+  name: {
+    configurable: true,
+    value: 'aaaa'
+  }
+});
+
+```
+
+***支持object.create()的浏览器有IE9+、FF4+、Safari5+、Opera12+和Chrome。***
+
+
+##5. 寄生式继承
+
+> 寄生式继承的思想与寄生构造函数和工厂模式类似。即创建一个仅用于封装过程的函数。
+
+```javascript
+function createAnother(original){
+  var clone = object(original);
+  clone.sayHi = function(){
+    console.log('Hi');
+  };
+  return clone;
+}
+
+
+```
+
+##6. 寄生组合式继承
+
+
+
 
