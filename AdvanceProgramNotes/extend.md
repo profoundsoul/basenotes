@@ -226,5 +226,44 @@ function createAnother(original){
 ##6. 寄生组合式继承
 
 
+> 组合继承虽然已经兼顾原型链和构造函数继承的优势，但超类构造函数会执行两次。为了避免不必要的执行消耗，扩展至寄生组合式继承：借用构造函数来继承实例属性，采用寄生式继承来超类的原型，然后再将结果制定给子类型的原型。
 
+```javascript
+function inheritPrototype(superType, subType){
+  var F = function(){};
+  F.prototype = superType.prototype;
+  var prototype = new F();
+  prototype.constructor = subType;
+  subType.prototype = prototype;
+}
+
+function SuperType(name){
+  this.name =name;
+  this.colors = ['red','blue', 'green'];
+}
+SuperType.prototype.sayName = function(){
+  console.log(this.name);
+};
+
+function SubType(name, age){
+  SuperType.call(this, name);
+  this.age = age;
+}
+
+inheritPrototype(SuperType, SubType);
+SubType.prototype.sayAge = function(){
+  console.log(this.age);
+};
+
+var instance1 = new SubType('linq', 35);
+
+
+```
+
+实例原型链关系如下图：
+
+![](images/extend.png)
+
+
+***它的高效体现在它只调用一次SuperType构造函数，因此避免了SubType.prototype上创建不必要的、多余的属性。以此同时，原型链始终保持不变；因此它还能正常的使用instanceOf和isPrototypeOf方法。开发普遍认为最理想的继承典范***
 
