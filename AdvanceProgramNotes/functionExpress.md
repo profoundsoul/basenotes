@@ -54,7 +54,7 @@ function factorial(num){
 
 ***严格模式下，argument.callee会报错误***
 
-> 严格模式处理方案：使用**立即执行函数**来保证函数的作用域
+> 严格模式处理方案：使用**命名函数表达式**来保证函数的作用域
 
 ```javascript
 var factorial = (function f(num){
@@ -62,7 +62,7 @@ var factorial = (function f(num){
     return 1;
   }
   return num * f(num -1)
-})();
+});
 
 ```
 
