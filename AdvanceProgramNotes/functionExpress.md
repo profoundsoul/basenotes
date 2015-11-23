@@ -132,6 +132,23 @@ function f2(){
   }
 }
 
+function f3(){
+  for(var i =0; i<10; i++){
+    setTimeout((function(){
+      console.log(i);
+    })(), 10);
+  }
+}
+
+function f4(){
+  for(var i=0; i<10; i++){
+    setTimeout(outPut.bind(this, i), 10);
+  }
+}
+
+function outPut(n){
+    console.log(n);
+}
 
 ```
 
