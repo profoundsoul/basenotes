@@ -68,6 +68,88 @@ var factorial = (function f(num){
 
 ***推荐使用方式***
 
+##2. 模仿块级作用域
+
+> JavaScript中没有块级作用域的概念。这意味的在块级作用域中定义的变量，实际上是包含在非语句中创建的。
+
+```javascript
+function outPutNumber(num){
+  for(var i = 0; i< num; i++){
+    console.log(i);
+  }
+  console.log(i);//显示出Num的值来，能够正常访问
+  
+  var i ;           //上面已经定义，对此重复定义视而不见
+  console.log(i);   //num
+  
+}
+
+```
+***在javaScript中，变量是定义在函数的活动对象中，因此从它有定义的开始，就可以在函数的内部随处访问它***
+
+> 匿名函数可以用模块级作用域并避免javaScript中无块级作用所带来的问题。
++ 匿名函数常规写法：  (function(){....}())或(function (){})()
+
+```javascript
+function outPutNumber(num){
+  (function(){
+    for(var i =0; i< num; i++){
+      console.log(i);
+    }
+  })();
+  console.log(i);     //报错，因为i被申明在私有作用域中，执行完后立即被销毁，外面无法访问。
+}
+
+
+
+```
+
+> 匿名函数解决变量绑定问题
++ 匿名立即执行函数
++ 匿名函数作为对象返回
+
+```javascript
+
+function f(){
+  for(var i =0; i<10; i++){
+    (function(){
+      var j = i;
+      setTimeout(function(){
+        console.log(j);
+      },10);
+    })();
+  }
+}
+
+function f2(){
+  var callback = function(param){
+    return function(){
+      console.log(param);
+    };
+  };
+  for(var i =0;i<10; i++){
+    setTimeout(callback(i), 10);
+  }
+}
+
+
+```
+
+> 匿名函数经常用于全局作用域中被用作外部函数，从而限制了往全局对象中添加不必要的属性和方法（过多）。通过创建私有作用域，尽量避免大型项目中全局对象中的命名冲突，也不必担心搞混乱了全局对象。
+
+```javascript
+(function(){
+  var now  = new Date();
+  if(now.getMonth() == 0 && now.getDate() == 1){
+    console.log('today is new year!');
+  }
+})();
+
+```
+
+***这种做法可以减少闭包占用内存的问题，因为没有指向匿名函数的引用，只要函数执行完毕，就立即销毁其作用域***
+
+
 
 
 
