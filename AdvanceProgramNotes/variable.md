@@ -42,3 +42,12 @@ delete global_var ; //删除失效
 delete global_novar ;//删除成功
 
 ```
+
+***4. 访问全局变量***
+> 在不同的全局环境中执行，不使用硬编码访问全局对象，适用于任何函数层级时访问。
+
+```javascript
+var gloabl = (function(){
+  return this;
+})();
+```
