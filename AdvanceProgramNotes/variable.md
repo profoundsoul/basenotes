@@ -28,3 +28,17 @@ function test(){
 
 ```
 
+***3. 忘记Var创建全局变量的副作用***
+> 隐式全局变量和明确定义的全局变量还是有些微小的区别的，可以通过delete操作符来识别
++ 隐式全局变量可以用delete删除
++ 显式全局变狼不能用delete删除
+
+```javascript
+var global_var = 11;
+global_novar = 12;
+
+delete global_var ; //删除失效
+
+delete global_novar ;//删除成功
+
+```
