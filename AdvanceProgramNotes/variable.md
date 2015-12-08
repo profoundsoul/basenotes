@@ -51,3 +51,24 @@ var gloabl = (function(){
   return this;
 })();
 ```
+
+## var声明预解析
+
+> 在Javascript中，你可以在函数的任何部位声明多个变量，并且他们就好像在函数顶部声明一样的发挥作用。这种行为称为Hosting（置顶解析/预解析）。**对于Javascript中，你的变量只要在同一作用域（同一函数）中声明，不管先后顺序，都是认为被声明。
+
+```javascript
+var name = "outer";
+function getName(){
+  console.log(name);      //undefined
+  var name = "inner";
+  console.log(name);      //inner
+}
+getName();
+```
+
+在执行环境中执行函数，代码处理分两个阶段：
++ 第一阶段：形参、函数声明、变量声明。这是一个进入解析和上下文的阶段。
++ 第二阶段：执行具体代码阶段，函数表达式和不合格表示符被创建
+
+
+
