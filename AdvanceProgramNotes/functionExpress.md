@@ -22,6 +22,8 @@ if(condition){
 ***若换成函数申明，上诉代码会出现各种浏览器Bug***
 
 
+
+
 --------------------------------------------------------------
 
 
@@ -62,6 +64,28 @@ try{
 }catch(err){
   //syntax error
 }
+```
+
+
+下面我们来看看ECMAScript中常见的函数表达式：
+
+```javascript
+(function footer(){console.log('function express');});    //函数表达式，因为使用了()括号
+
+[function foo(){console.log('function express');}]        //函数表达式，因为使用了[]括号
+
+1, function bar(){console.log('function express');}       //函数表达式，因为使用了逗号也是表达式
+
+// 另外使用一些基本的操作符也可以识别出函数表达式
+//例如：&& || ! 等操作符和逗号一样~
+
+var person = {
+  getName: function(name){return name}('linq')      //也是函数表达式，因为：号本身就是赋值表达式的
+};
+
+
+***函数表达式相较于函数声明最大优势就是：不会污染执行环境的VO对象***
+
 
 ```
 
