@@ -245,3 +245,90 @@ ele.style.padding = '5px';
 
 ***总结：尽量不要在布局信息改变时做查询。***
 
+###5. 最小化重排和重绘
+
+  我们还是看上面的这段代码：
+
+```
+var ele = document.getElementById('myDiv');
+ele.style.borderLeft = '1px';
+ele.style.borderRight = '2px';
+ele.style.padding = '5px';
+
+```
+
+  三个样式属性被改变，每一个都会影响元素的几何结构，虽然大部分现代浏览器都做了优化，只会引起一次重排。***但是像上文一样，如果一个及时的属性被请求，那么就会强制刷新队列，而且这段代码四次访问DOM***。
+  
+  一个很显然的优化策略就是把它们的操作合成一次，这样只会修改DOM一次：
+  
+```javascript
+var ele = document.getElementById('myDiv');
+
+// 1. 重写style
+ele.style.cssText = 'border-left: 1px; border-right: 2px; padding: 5px;';
+
+// 2. add style
+ele.style.cssText += 'border-;eft: 1px;'
+
+// 3. use class
+ele.className = 'active';
+
+```
+
+###6. fragment元素的应用
+
+看如下代码，考虑一个问题：
+
+```
+<ul id='fruit'>
+  <li> apple </li>
+  <li> orange </li>
+</ul>
+
+```
+
+如果代码中要添加内容为peach、watermelon两个选项，你会怎么做？
+
+```javascript
+
+var lis = document.getElementById('fruit');
+var li = document.createElement('li');
+li.innerHTML = 'apple';
+lis.appendChild(li);
+
+var li = document.createElement('li');
+li.innerHTML = 'watermelon';
+lis.appendChild(li);
+
+```
+
+  很容易想到如上代码，但是很显然，重排了两次，怎么破？前面我们说了，**隐藏的元素不在渲染树中，太棒了，我们可以先把id为fruit的ul元素隐藏（display=none)，然后添加li元素，最后再显示，但是实际操作中可能会出现闪动，原因这也很容易理解**。
+  
+  fragment元素就专门用来解决此问题：
+  
+```javascript
+var fragment = document.createDocumentFragment();
+
+var li = document.createElement('li');
+li.innerHTML = 'apple';
+fragment.appendChild(li);
+
+var li = document.createElement('li');
+li.innerHTML = 'watermelon';
+fragment.appendChild(li);
+
+document.getElementById('fruit').appendChild(fragment);
+
+```
+
+
+***文档片段是个轻量级的document对象，它的设计初衷就是为了完成这类任务——更新和移动节点***
+
+  文档片段的一个便利的语法特性是当你附加一个片断到节点时，**实际上被添加的是该片断的子节点，而不是片断本身**。只触发了一次重排，而且只访问了一次实时的DOM。
+
+
+
+
+
+
+  
