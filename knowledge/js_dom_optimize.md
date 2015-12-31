@@ -140,4 +140,108 @@ var elements = document.querySelectorAll('div.warning, div.notice');
 
 ## 重排和重绘
 
-> 
+> 浏览器下载完页面中的所有组件——HTML标记、JavaScript、CSS、图片之后会解析生成两个内部数据结构——DOM树和渲染树。
++ DOM树表示页面结构，渲染树表示DOM节点如何显示。DOM树中的每一个需要显示的节点在渲染树种至少存在一个对应的节点（隐藏的DOM元素disply值为none 在渲染树中没有对应的节点）。
++ 渲染树中的节点被称为“帧”或“盒",符合CSS模型的定义，理解页面元素为一个具有填充，边距，边框和位置的盒子。一旦DOM和渲染树构建完成，浏览器就开始显示（绘制）页面元素。
+
+
+###1. 什么是重排和重绘
+
+> 当DOM的变化影响了元素的几何属性（宽或高），浏览器需要重新计算元素的几何属性，同样其他元素的几何属性和位置也会因此受到影响。浏览器会使渲染树中受到影响的部分失效，并重新构造渲染树。**这个过程称为重排***。完成重排后，浏览器会重新绘制受影响的部分到屏幕，**该过程称为重绘**。
+
+  由于浏览器的流布局，对渲染树的计算通常只需要遍历一次就可以完成。***但table及其内部元素除外，它可能需要多次计算才能确定好其在渲染树中节点的属性，通常要花3倍于同等元素的时间。这也是为什么我们要避免使用table做布局的一个原因***
+  
+***并不是所有的DOM变化都会影响几何属性，比如改变一个元素的背景色并不会影响元素的宽和高，这种情况下只会发生重绘***
+
+###2. 重排和重绘的代价究竟多大
+
+> 重排和重绘的代价有多大？我们再回到前文那个过桥的例子上，细心的你可能会发现了，千倍的时间差并不是由于“过桥”一手造成的，每次“过桥”其实都伴随着重排和重绘，而耗能的绝大部分也正是在这里!
+
+```javascript
+var times = 15000;
+
+// code1 每次过桥+重排+重绘
+console.time(1);
+for(var i = 0; i < times; i++) {
+  document.getElementById('myDiv1').innerHTML += 'a';
+}
+console.timeEnd(1);
+
+// code2 只过桥
+console.time(2);
+var str = '';
+for(var i = 0; i < times; i++) {
+  var tmp = document.getElementById('myDiv2').innerHTML;
+  str += 'a';
+}
+document.getElementById('myDiv2').innerHTML = str;
+console.timeEnd(2);
+
+// code3 
+console.time(3);
+var _str = '';
+for(var i = 0; i < times; i++) {
+  _str += 'a';
+}
+document.getElementById('myDiv3').innerHTML = _str;
+console.timeEnd(3);
+
+
+// 1: 2874.619ms
+// 2: 11.154ms
+// 3: 1.282ms
+
+```
+
+###3. 重排何时发生
+
+> 很显然，每次重排，必然会导致重绘，那么，重排会在哪些情况下发生？
++ 添加或者删除可见的DOM元素
++ 元素位置改变
++ 元素尺寸改变
++ 元素内容改变（例如：一个文本被另一个不同尺寸的图片替代）
++ 页面渲染初始化（这个无法避免）
++ 浏览器窗口尺寸改变
+
+这些都是显而易见的，或许你已经有过这样的体会，***不间断地改变浏览器窗口大小，导致UI反应迟钝***（某些低版本IE下甚至直接挂掉），现在你可能恍然大悟，没错，正是一次次的重排重绘导致的！
+  
+  
+###4. 渲染树变化的排队和刷新
+
+思考下面代码：
+
+```javascript
+
+var ele = document.getElementById('myDiv');
+ele.style.borderLeft = '1px';
+ele.style.borderRight = '2px';
+ele.style.padding = '5px';
+
+```
+
+  乍一想，元素的样式改变了三次，每次改变都会引起重排和重绘，所以总共有三次重排重绘过程，但是浏览器并不会这么笨，它会把三次修改“保存”起来，**即：操作会缓存在渲染队列中待处理***（大多数浏览器通过队列化修改并批量执行来优化重排过程），一次完成！
+
+> 但是，有些时候你可能会（经常是不知不觉）强制刷新队列并要求计划任务立即执行。获 取布局信息的操作会导致队列刷新，比如：
++ offsetTop, offsetLeft, offsetWidth, offsetHeight
++ scrollTop, scrollLeft, scrollWidth, scrollHeight
++ clientTop, clientLeft, clientWidth, clientHeight
++ getComputedStyle() (currentStyle in IE)
+
+```javascript
+
+var ele = document.getElementById('myDiv');
+ele.style.borderLeft = '1px';
+ele.style.borderRight = '2px';
+
+// here use offsetHeight,会自动强制刷新重绘重排队列执行
+// ...
+ele.style.padding = '5px';
+
+```
+
+  因为offsetHeight属性需要返回最新的布局信息，因此浏览器不得不执行渲染队列中的“待处理变化”并触发重排以返回正确的值（即使队列中改变的样式属性和想要获取的属性值并没有什么关系）。
++ 一旦offsetHeight属性被请 求了，队列就会立即执行一次重排与重绘。
++ padding重新改变时，会被缓存到最后又会又一次重排与重绘。
+
+***总结：尽量不要在布局信息改变时做查询。***
+
