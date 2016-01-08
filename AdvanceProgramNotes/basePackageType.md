@@ -166,6 +166,7 @@ console.log(str.lastIndexOf('o', 6));   //4
 ###4. trim()方法
 
 > ECMAScript5为所有字符串定义了trim()方法。这个方法会创建一个字符串副本，删除前置以及后缀的所有空格，然后返回结果。
+
 + trim()      删除前置以及后置空格
 + trimLeft()  删除前置空格
 + trimRight() 删除后缀的空格
@@ -182,9 +183,10 @@ console.log(str.trimRight()); //   clock
 ###5. 字符串大小写转换方法
 
 > 字符串大小写转换有关的方法
-+ toLowerCase()
+
++ toLowerCase()      //全部转换成小写
 + toLocaleLowerCase()
-+ toUpperCase()
++ toUpperCase()     //全部转换成大写
 + toLocaleUpperCase()
 
 ###6. 字符串的模式匹配方法
@@ -213,6 +215,7 @@ console.log(pos);               //1
 ```
 
 > replace() 接收两个参数：第一个参数可以是RegExp对象或字符串，第二个参数可以是一个字符串或函数。
+
 + 正则替换，第一个参数时正则表达式字面量或对象，按照正则匹配替换
 + 字符串替换，直接替换匹配到的第一个匹配项替换字符
 
