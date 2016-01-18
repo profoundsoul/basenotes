@@ -66,3 +66,86 @@ console.log(window.color);	//undefined
 + seft 始终指向当前的window对象
 + parent 始终指向当前window对象的父window对象。
 
+
+##3. 窗口位置
+
+> 用来确定和修改window对象位置的属性和方法有很多，IE、Safari、Opera和Chrome都提供了screenLeft和screenTop属性。Firefox则在screenX和screenY属性中提供相同的窗口位置信息。
+
+```javascript
+var left = (typeof window.screenX === 'number' )?window.screenX:window.screenLeft;
+
+var top = (typeof window.screenY === 'number')?window.screenY:window.screenTop;
+
+```
+
+常见配合使用的有坐标地点：
++ moveTo(newX, newY)
++ moveBy(offsetX, offsetY)
+
+##4. 窗口大小
+
+> IE9+、FireFox、Safari、Opera和Chrome均提供了4个属性：innerWidth、innerHeight、outerWidth、outerHeigth四个属性，**只是不同浏览器中属性意义不一致**。
+
+常见视口获取方法：
++ document.documentElement.clientHeight/clientWidth （除IE6等不支持）
++ document.body.clientWidth/clientHeight（IE6等特有）
+
+```javascript
+
+var pageWidth = window.innerWidth;
+var pageHeight = window.innerHeight;
+if(typeof pageWidth != 'number'){
+	if(document.compatMode == 'CSS!Compat'){
+		pageWidth = document.documentElement.clientWidth;
+		pageHeight = document.documentElement.clientHeight;
+	}else{
+		pageWidth = document.body.clientWidth;
+		pageHeigth = document.body.clientHeigth;
+	}
+}
+
+//上面代码获取了视口的高宽值
+```
+
+> 调整整个浏览器窗口的大小
++ resizeTo(newWidth, newHeight)
++ resizeBy(offsetWidth, offsetHeigth)
+
+```javascript
+window.resizeTo(100,100);			//100,100
+window.resizeBy(100,50);			//200,150
+window.resizeTo(300,300);			//300,300
+```
+
+注意：**这两个方法与移动窗口位置的方法类似，也有可能被浏览器禁用，另外不适合框架**
+
+##5. 导航和打开窗口
+
+> window.open既可以导航到一个特定的URL，也可以打开一个新的浏览器窗口。可以接受四个参数：
++ 要加载的URL
++ 窗口目标
++ 一个特性字符串
++ 新页面是否取代浏览器历史中当前加载页面的布尔值。
+
+```javascript
+//等同于<a href="http://www.wrox.com" target="topFrame"></a>
+window.open("http://www.wrox.com", "topFrame");
+```
+
+第二个参数也可以是下列任何一个特殊的窗口名称：**_top、_self、_parent、_blank**
+
+第三个参数：
+
+|-----------------设 置----------------------|------------------------ 值 --------------------------------|-------------- 说 明------------------|
+| fullscreen                                              |                     yes或no                |表示浏览器窗口是否最大化。仅限IE              |
+| height                                                    |数值                              |  表示新窗口的高度。不能小于100             |
+| left                                                          |数值                             |  表示新窗口的左坐标。不能是负值             |
+|location                                                  | yes或no                      |  表示是否在浏览器窗口中显示地址栏。不同浏览器的默认值不同。如果设置为no，地址栏可能会隐藏，也可能会被禁用（取决于浏览器）             |
+| menubar                                               |yes或no                      |  表示是否在浏览器窗口中显示菜单栏。默认值为no             |
+| resizable                                               | yes或no                      |  表示是否可以通过拖动浏览器窗口的边框改变其大小。默认值为no             |
+| scrollbars                                              |yes或no                      |  表示如果内容在视口中显示不下，是否允许滚动。默认值为no             |
+| status                                                    |yes或no                      |  表示是否在浏览器窗口中显示状态栏。默认值为no             |
+| toolbar                                                  | yes或no                      |  表示是否在浏览器窗口中显示工具栏。默认值为no             |
+|  top                                                       | 数值                            |  表示新窗口的上坐标。不能是负值             |
+|  width                                                    |数值                            | 表示新窗口的宽度。不能小于100             |
+
