@@ -155,3 +155,85 @@ window.open("http://www.wrox.com", "topFrame");
 > window.open() 方法会返回一个指向新窗口的引用。引用的对象与其他window对象大致相似，但我们可以对其做更多的控制。
 + 窗口大小和位置移动
 + 关闭窗口
+
+
+### 安全限制
+
+> 广告商利用弹窗引发安全问题或带来无限弹窗的不良体验。
+
+**因此，现在大部分的浏览器都对window.open或多或少有安全限制，建议少用**
+
+```javascript
+// 用来检验是否已限制弹窗
+function isBlockPopup(){
+	var blocked = false;
+	try{
+		var win = window.open('http://www.baidu.com', '_blank');
+		if(!win){
+			blocked = true;
+		}
+	}catch(ex){
+		blocked = true;
+	}
+	return blocked;
+}
+```
+
+##6. 间歇调用和超时调用
+
+> JavaScript是单线程语言，但它允许通过设置超时值和间歇时间值来调度代码在特定的时刻执行。
++ setTimeout 超时调用, 第一个参数handler；第二个参数时delay
++ setInterval   间歇调用，第一个参数handler；第二个参数时delay
+
+
+说明：**JavaScript 是一个单线程序的解释器，因此一定时间内只能执行一段代码。为了控制要执行的代码，就有一个JavaScript任务队列。这些任务会按照将它们添加到队列的顺序执行**。 setTimeout()的第二个参数告诉 JavaScript 再过多长时间把当前任务添加到队列中。如果队列是空的，那么添加的代码会立即执行；如果队列不是空的，那么它就要等前面的代码执行完了以后再执行。
+
+```javascript
+var timeoutid = setTimeout(function(){
+	console.log('hello world！');
+}, 1000);
+//注意：把它取消
+clearTimeout(timeoutid);
+```
+
+ setInterval()方法同样也会返回一个间歇调用ID，该ID可用于在将来某个时刻取消间歇调用。要取消尚未执行的间歇调用，可以使用 clearInterval()方法并传入相应的间歇调用 ID。取消间歇调用的重要性要远远高于取消超时调用
+
+
+```javascript
+var num = 0;
+var max = 10;
+var intervalId = null;
+function incrementNumber() {
+	num++;
+	//如果执行次数达到了 max 设定的值，则取消后续尚未执行的调用
+	if (num == max) {
+		clearInterval(intervalId);
+		alert("Done");
+	}
+}
+intervalId = setInterval(incrementNumber, 500);
+
+```
+
+***一般认为，使用超时来模拟间歇调用的是一种最佳的模式。在开发环境中很少真正的间歇调用，原因是后一个间歇调用可能会在前一个间歇调用结束前启动。建议最好不要使用间歇调用***
+
+##7. 系统对话框
+
++ alert()
++ confirm()
++ prompt()
++ print()
++ find()
+
+
+**浏览器对这些对话框也有一些用户自定义限制，一般真正的项目中很少使用**
+
+
+
+
+
+
+
+
+
+
