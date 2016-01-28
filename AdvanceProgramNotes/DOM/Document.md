@@ -148,7 +148,66 @@ var hasXmlDom = document.implementation.hasFeature("XML", "1.0");
 
 ##1.6 文档写入
 
-> document 
+> document 可以将输出流写入到网页中：
++ document.write  写入，页面加载的过程中单独使用可以动态加入内容
++ document.writeln 写入，最后加上\n换行，页面加载的过程中单独使用可以动态加入内容
++ document.open    关闭文档流
++ document.close    关闭文档流
+
+```
+<html>
+	<head>
+		<title>document.write() Example</title>
+	</head>
+	<body>
+		<p>The current date and time is:
+		<script type="text/javascript">
+			document.write("<strong>" + (new Date()).toString() + "</strong>");
+		</script>
+		</p>
+	</body>
+</html>
+
+```
+
+#### write可以动态加载外部资源，需要转义
+
+```
+<html>
+	<head>
+		<title>document.write() Example 3</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+		document.write("<script type=\"text/javascript\" src=\"file.js\">" +
+		"<\/script>");
+	</script>
+	</body>
+</html>
+
+```
+
+#### 页面加载完成后，会重写整个页面内容
+> 页面加载完成后，需要使用方法 open()和 close()分别用于打开和关闭网页的输出流，然后才可以使用write重写整个页面。
+
+```javascript
+<html>
+<head>
+	<title>document.write() Example 4</title>
+</head>
+<body>
+	<p>This is some content that you won't get to see because it will be overwritten.</p>
+	<script type="text/javascript">
+		window.onload = function(){
+		document.write("Hello world!");
+		};
+	</script>
+</body>
+</html>
+```
+
+
+
 
 
 
