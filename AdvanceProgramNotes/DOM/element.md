@@ -133,5 +133,43 @@ alert(div.dir);                                 //"ltr"
 | var                          |   HTMLElement                 |
 
 
+##2. 取得特性
+
+> 每个元素都有一或多个特性，这些特性的用途是给出相应元素或其内容的附加信息，操作特性的DOM方法：
++ getAttribute
++ setAttribute
++ removeAttribute
+
+```javascript
+
+var div = document.getElementById("myDiv");
+alert(div.getAttribute("id")); //"myDiv"
+alert(div.getAttribute("class")); //"bd"
+alert(div.getAttribute("title")); //"Body text"
+alert(div.getAttribute("lang")); //"en"
+alert(div.getAttribute("dir")); //"ltr"
+
+```
+
+***不过，特性的名称是不区分大小写的，即"ID"和"id"代表的都是同一个特性。另外也要注意，根据 HTML5 规范，自定义特性应该加上 data-前缀以便验证***
+
+
+> HTMLElement 也会有 5个属性与相应的特性一一对应，只有工人的特性才会以属性的形式添加到DOM对象中：
+
+```
+<div id="myDiv" align="left" my_special_attribute="hello!"></div>
+```
+
+```javascript
+
+alert(div.id); //"myDiv"
+alert(div.my_special_attribute); //undefined（ IE 除外）
+alert(div.align);
+```
+
+
+
+
+
 
 
