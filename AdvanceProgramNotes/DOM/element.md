@@ -167,7 +167,7 @@ alert(div.my_special_attribute); //undefined（ IE 除外）
 alert(div.align);
 ```
 
-### 2类特殊特性
+### 特殊特性
 
 > 虽然有对应的属性名，但属性的值与通过 getAttribute()返回的值并不
 相同：
