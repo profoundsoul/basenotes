@@ -12,3 +12,6 @@
 * Technology Site
 	- <https://github.com>
 	- <http://stackoverflow.com/>
+* statistics Site
+	- <http://gs.statcounter.com/>
+	- 
