@@ -14,4 +14,3 @@
 	- <http://stackoverflow.com/>
 * statistics Site
 	- <http://gs.statcounter.com/>
-	- 
