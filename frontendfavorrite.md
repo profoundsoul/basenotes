@@ -159,7 +159,7 @@ QQ客户端团队博客
 + 52weeks of UX <http://52weeksofux.com/>
 + Johnny Holland <http://johnnyholland.org/>
 + UX Booth <http://www.uxbooth.com/>
-+ <http://www.lukew.com/ >
++ <http://www.lukew.com/>
 + <www.lovelyui.com/> 介绍一下很棒的UI设计；
 + <http://littlebigdetails.com/> 介绍一些交互设计中细节处理很好的案例
 
