@@ -7,7 +7,7 @@
 + <http://css-tricks.com/>
 + <http://www.paulrhayes.com/>
 + <http://beercamp.com/>
-+ <http://vivienchen.me/> 主翻译国外文章的前端博客
++ <http://vivienchen.me/> *主翻译国外文章的前端博客*
 
 ### 致力于创造性的页面
 + <http://www.webdesignerdepot.com/>
