@@ -1,55 +1,43 @@
 ### 国外专业性编程问答网站
 
-+ http://html5-demos.appspot.com/
-+ http://html5doctor.com/
-+ http://24ways.org/
-+ http://net.tutsplus.com/category/tutorials/html-css-techniques/
-+ http://css-tricks.com/
-+ http://www.paulrhayes.com/
-+ http://beercamp.com/
++ <http://html5-demos.appspot.com/>
++ <http://html5doctor.com/>
++ <http://24ways.org/>
++ <http://net.tutsplus.com/category/tutorials/html-css-techniques/>
++ <http://css-tricks.com/>
++ <http://www.paulrhayes.com/>
++ <http://beercamp.com/>
 
 ### 致力于创造性的页面
-+ http://www.webdesignerdepot.com/
-+ http://patterntap.com/
-+ http://webdesignledger.com/
++ <http://www.webdesignerdepot.com/>
++ <http://patterntap.com/>
++ <http://webdesignledger.com/>
 
 
-/*******************国外(个人)前端站点*****************/
-+ http://line25.com/
-+ http://www.csskarma.com/blog/
+### 国外(个人)前端站点
++ <http://line25.com/
++ <http://www.csskarma.com/blog/>
 Tim Wright是一位网页设计师/开发工程师和博主。他从2004年就成为一名web标准和易用性的倡导者。
 
-/*****************国外杂志类网站***************/
 
-http://www.smashingmagazine.com/
-Smashing Magazine
-
-http://www.bamagazine.com/
-《 B&A 设计杂志》 (Before & After Magazine) 官网
-
-/******************工具性（资源类）网站******************/
-
-http://www.findmebyip.com/
-
-http://www.pjhome.net/web/html5/encodeDataUrl.htm
+### 工具性（资源类）网站
++ <http://www.findmebyip.com/>
++ <http://www.pjhome.net/web/html5/encodeDataUrl.htm>
 图片转base64 编码
-
-http://html5test.com/
++ <http://html5test.com/>
 检测浏览器对HTML5的支持
-
-http://www.css3maker.com/
-http://css3please.com/
-http://csswarp.eleqtriq.com/
-http://www.css3.me/
-http://layerstyles.org/builder.html
-
-http://jslint.com/
++ <http://www.css3maker.com/>
++ <http://css3please.com/>
++ <http://csswarp.eleqtriq.com/>
++ <http://www.css3.me/>
++ <http://layerstyles.org/builder.html>
++ <http://jslint.com/>
 检查js语法
-
-http://www.css88.com/demo/hex_color/
++ <http://www.css88.com/demo/hex_color/>
 转换IE 背景透明滤镜（纯色）值
-http://bennettfeely.com/flexplorer/
++ <http://bennettfeely.com/flexplorer/>
 flex布局生成器
+
 /*******************国内(团队)前端站点*****************/
 
 http://fed.renren.com/
