@@ -124,7 +124,7 @@
 + http://www.t3kila.com/*Romain Wurtz | Creative Development Strasbourg* 
 + http://neave.com/*Neave Interactive* 
 + http://nipponcolors.com/*NIPPON COLORS - 日本の伝統色（使用 谷歌chrome浏览器访问）* 
-+ HTML5 http://hakim.se/experiments*Interactive Experiments Focused on*
++ http://hakim.se/experiments*Interactive Experiments Focused on HTML5*
 + http://www.cuttherope.ie/ *Cut the Rope 网页版* 
 + http://maps.google.com/help/maps/starthere/index.html *Google Maps — Start here* 
 + http://www.google.com/green/storyofsend/desktop/*The Story of Send (Gmail)* 
