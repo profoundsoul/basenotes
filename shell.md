@@ -4,7 +4,7 @@
 
 <http://www.cnblogs.com/include/archive/2011/12/09/2307905.html>*[[]]与[]区别*
 
-### 常用命令
+## 常用命令
 #### 变量定义，变量访问，变量赋值
 ```shell
 var = value;  #定义变量
