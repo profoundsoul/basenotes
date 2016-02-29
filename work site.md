@@ -12,5 +12,7 @@
 * Technology Site
 	- <https://github.com>
 	- <http://stackoverflow.com/>
+	- <http://caniuse.com/>
+	- <https://html5test.com/>
 * statistics Site
 	- <http://gs.statcounter.com/>
