@@ -13,13 +13,13 @@ http://myname:mypass@www.vimer.cn:80/mydir/myfile.html?myvar=myvalue#myfrag
 | URI部分   |意义               |
 |-----------|-------------------|
 |http       |协议名称           |
-|myname     |认证用户名         |
-|mypass     |认证密码           |
+|myname     |认证用户名（可选）         |
+|mypass     |认证密码（可选）           |
 |www.wimer.cn|主机名称          |
-|80         |主机端口           |
+|80         |主机端口（可选）           |
 |/mydir/myfile.html|资源路径    |
-|myvar=myvalue|查询字符串       |
-|myfrag       |锚点             |
+|myvar=myvalue|查询字符串（可选）       |
+|myfrag       |锚点（可选）             |
 
 分析：
 + 协议名称用“://”结束
