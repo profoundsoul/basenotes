@@ -71,11 +71,11 @@ Host:www.qq.com
 
 HTTP在网络中的层次如图1所示：
 
-!(http协议网络层次图)(image/internetHierarchy.jpg)
+!(http协议网络层次图)(images/internetHierarchy.jpg)
 
 HTTP是基于传输层的TCP协议，而TCP是一个端到端的面向连接的协议。所谓的端到端可以理解为进程到进程之间的通信。所以HTTP在开始传输之前，首先需要建立TCP连接，而TCP连接的过程需要所谓的“三次握手”，如下图所示：
 
-!(TCP/IP连接三次握手图)(image/threeshakehandle.jpg)
+!(TCP/IP连接三次握手图)(images/threeshakehandle.jpg)
 
 在TCP三次握手之后，建立了TCP连接，此时HTTP就可以进行传输了。一个重要的概念是面向连接，既HTTP在传输完成之间并不断开TCP连接。在HTTP1.1中(通过Connection头设置)这是默认行为。
 
