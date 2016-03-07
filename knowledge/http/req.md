@@ -56,7 +56,7 @@ URI一般是由三部分组成：协议 + host + 资源路径；此处一般指�
 |content-type          |请求正文的内容类型                   |
 |content-length       |请求正文的长度                           |
 |cookies                   |cookie缓存                                   |
-|Connection             |长连接                                          |
+|Connection             |长连接Keep-Alive,表示TCP连接时间                                          |
 |Cache-Control        |缓存机制                                      |
 
 
