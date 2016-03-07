@@ -60,8 +60,20 @@ URI一般是由三部分组成：协议 + host + 资源路径；此处一般指�
 |Cache-Control        |缓存机制                                      |
 
 
-
 **HTTP1.1版本中，HOST包头必须填写**
+
+媒体类型的格式为：大类/小类 比如图5中的html是小类，而text是大类。
+
+IANA(The Internet Assigned Numbers Authority，互联网数字分配机构)定义了8个大类的媒体类型，分别是：
+
++ application(比如: application/vnd.ms-excel.)
++ image (比如: image/png.)
++ audio(比如: audio/mpeg.)
++ video(比如:model/vrml.)
++ text(比如:text/html.)
++ multipart(比如:multipart/form-data.)
++ model(比如:model/vrml.)
++ message (比如,:message/http.)
 
 
 
