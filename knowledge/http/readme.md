@@ -65,5 +65,17 @@ Host:www.qq.com
 更符合数据量较大的丰富应用，使的资源消耗更少。
 
 
+## HTTP的网络层次
 
+> 在Internet中所有的传输都是通过TCP/IP进行的。HTTP协议作为TCP/IP模型中应用层的协议也不例外。
+
+HTTP在网络中的层次如图1所示：
+
+!(http协议网络层次图)(image/internetHierarchy.jpg)
+
+HTTP是基于传输层的TCP协议，而TCP是一个端到端的面向连接的协议。所谓的端到端可以理解为进程到进程之间的通信。所以HTTP在开始传输之前，首先需要建立TCP连接，而TCP连接的过程需要所谓的“三次握手”，如下图所示：
+
+!(TCP/IP连接三次握手图)(image/threeshakehandle.jpg)
+
+在TCP三次握手之后，建立了TCP连接，此时HTTP就可以进行传输了。一个重要的概念是面向连接，既HTTP在传输完成之间并不断开TCP连接。在HTTP1.1中(通过Connection头设置)这是默认行为。
 
