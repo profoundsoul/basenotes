@@ -2,9 +2,9 @@
 
 参考：
 
-	<http://www.webryan.net/2011/08/wiki-of-http-cookie/>
+<http://www.webryan.net/2011/08/wiki-of-http-cookie/>
 
-	<http://bubkoo.com/2014/04/21/http-cookies-explained/>
+<http://bubkoo.com/2014/04/21/http-cookies-explained/>
 
 > Cookie通常也叫做网站cookie，浏览器cookie或者Http Cookie。就是浏览器存储在用户电脑的上的一段文本文件。并在发送Http请求时会默认携带的一段文本片段。它可以用来做用户认证，服务器校验等。
 
