@@ -47,6 +47,48 @@
 
 **当Cookie删除后，自动从其他本地存储读取Cookie的备份，并重新种植**
 
+## 创建Cookie
+> 通常创建Cookie的方式有两种：
++ Web Server通过Http Respone 消息头设置Set-Cookie头创建，允许有多个Set-Cookie设置。
++ 在客户端允许执行脚本的情况下，Cookie是允许被JavaScript等脚本设置的。
+
+Set-Cookie格式如下：
+
+	Set-Cookie: name=value[;expires=date][;domain=domain][;path=path][;secure]
+	[]内表示是可选设置项
+
+当存在一个Cookie，并允许设置可选项，该Cookie的值会在每次请求中发送到服务器。Cookie的值被存在Request的Http消息头：Cookie中，多个用逗号分隔。
+
+	Cookie: value1; value2; name=value1; name2=value2
+
+http方式:以访问http://www.webryan.net/index.php为例
+Step1.客户端发起http请求到Server
+
+	GET /index.php HTTP/1.1
+	Host: www.webryan.net
+	(这里是省去了User-Agent,Accept等字段)
+
+Step2. 服务器返回http response,其中可以包含Cookie设置
+
+	HTTP/1.1 200 OK
+	Content-type: text/html
+	Set-Cookie: name=value
+	Set-Cookie: name2=value2; Expires=Wed, 09 Jun 2021 10:18:14 GMT
+	(content of page)
+
+Step3. 后续访问webryan.net的相关页面
+
+	GET /spec.html HTTP/1.1
+	Host: www.webryan.net
+	Cookie: name=value; name2=value2
+	Accept: */*
+
+需要修改cookie的值的话，只需要Set-Cookie: name=newvalue即可，浏览器会用新的值将旧的替换掉。
+
+
+
+
+
 
 
 
