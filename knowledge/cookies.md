@@ -62,6 +62,7 @@ Set-Cookie格式如下：
 	Cookie: value1; value2; name=value1; name2=value2
 
 http方式:以访问http://www.webryan.net/index.php为例
+
 Step1.客户端发起http请求到Server
 
 	GET /index.php HTTP/1.1
