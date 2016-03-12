@@ -1,7 +1,8 @@
 # HTTP Cookie
 
-参考：<http://www.webryan.net/2011/08/wiki-of-http-cookie/>
-<http://bubkoo.com/2014/04/21/http-cookies-explained/>
+参考：
+	<http://www.webryan.net/2011/08/wiki-of-http-cookie/>
+	<http://bubkoo.com/2014/04/21/http-cookies-explained/>
 
 > Cookie通常也叫做网站cookie，浏览器cookie或者Http Cookie。就是浏览器存储在用户电脑的上的一段文本文件。并在发送Http请求时会默认携带的一段文本片段。它可以用来做用户认证，服务器校验等。
 
@@ -28,7 +29,7 @@
 ###5. 3rd-party cookie
 > 第三方cookie是指种植在不同于浏览器地址的域名下的cookie。
 
-例如：用户访问a.com时，访问在ad.google.com设置了个cookie，在访问b.com的时候，也在ad.google.com设置了一个cookie
+	例如：用户访问a.com时，访问在ad.google.com设置了个cookie，在访问b.com的时候，也在ad.google.com设置了一个cookie
 
 ###6. Super Cookie
 > 超级Cookie是设置公共域名前缀上的Cookie。
