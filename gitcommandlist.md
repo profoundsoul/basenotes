@@ -1,6 +1,7 @@
 # 常用 Git 命令清单
 
 参考原文：<http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html>
+回滚commit和回退线上版本：<http://yijiebuyi.com/blog/8f985d539566d0bf3b804df6be4e0c90.html>
 
 > 我每天使用 Git ，但是很多命令记不住。
 一般来说，日常使用只要记住下图6个命令，就可以了。但是熟练使用，恐怕要记住60～100个命令。
