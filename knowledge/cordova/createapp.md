@@ -49,14 +49,11 @@ tips：自动生成项目目录结构；其中www/index.html是home page
 ```
 	cordova platform list/ls
 ```
-
 2. 查看帮助
 ```
 	cordova platform -help
 ```
-
 3. 常用命令
-
 ```
 	cordova platform add [options]
 
@@ -66,7 +63,6 @@ tips：自动生成项目目录结构；其中www/index.html是home page
 	
 	cordova platform update <plat-spec>( <platform-ver>|<path>|<git-url>)
 ```
-
 4. 添加平台
 ```
 cordova platform add android --save
@@ -94,24 +90,20 @@ tips：
 ```
 	cordova build
 ```
-
 2. 指定平台构建
 ```
 	cordova build iso/android
 ```
-
 ## 测试App
 
 1. 常用模拟器方法
 ```
 	cordova emluate [android]/[ios]
 ```
-
 2. 执行运行测试
 ```
 	cordova run [android]/[ios]
 ```
-
 ## 添加插件
 
 + 查询插件
