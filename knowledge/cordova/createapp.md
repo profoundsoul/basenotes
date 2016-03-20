@@ -53,9 +53,14 @@ tips：自动生成项目目录结构；其中www/index.html是home page
 3. 常用命令
 
 	cordova platform add [options]
+
 	cordova platform remove/rm [options]
+	
 	cordova platform check 
+	
 	cordova platform update <plat-spec>( <platform-ver>|<path>|<git-url>)
+
+
 
 ```
 cordova platform add android --save
@@ -110,6 +115,8 @@ tips：
 + 添加插件
 
 	cordova plugin add pluginName@version
+
+	
 
 
 
