@@ -177,6 +177,19 @@ HttpOnly字段告诉浏览器，只有在HTTP协议下使用，对浏览器的�
 以 “Mike” 作为值的 cookie 使用了域名（www.nczonline.net）作为其 domain 值并且以全路径（/blog）作为其 path 值，则它较其它两个 cookie 更加详细。
 
 
+## 浏览器限制Cookie
+
+> Cookie存在许多限制条件，来阻止Cookie滥用并保护浏览器和服务器收到一些负面影响，主要有两种：
++ cookie的个数
++ cookie的总大小
+
+	原始规范中指出：每个域名cookie指出不能超过20个；每个域名最大数量（空间）不能超过4KB，超出的都会被覆盖或截掉不发给服务器。
+
+
++ 浏览器都支持删除和禁用cookie
++ Cookie规范规定浏览器最少支持300个cookie，每个cookie最大4KB；
+
+
 
 
 
