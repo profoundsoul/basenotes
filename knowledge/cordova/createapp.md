@@ -67,7 +67,7 @@ tips：自动生成项目目录结构；其中www/index.html是home page
 	cordova platform update <plat-spec>( <platform-ver>|<path>|<git-url>)
 ```
 
-
+4. 添加平台
 ```
 cordova platform add android --save
 ```
