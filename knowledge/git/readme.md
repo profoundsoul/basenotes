@@ -123,7 +123,9 @@ $ git checkout [branch-name]
 $ git branch --set-upstream [branch] [remote-branch]
 
 # 合并指定分支到当前分支
-$ git merge [branch]
+$ git merge [currentBranch]
+$ git merge [branch]				#将branch分支合并到currentBranch。
+$ git merge [branch] --stat                                #显示合并统计
 
 # 选择一个commit，合并进当前分支
 $ git cherry-pick [commit]
