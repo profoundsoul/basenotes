@@ -282,10 +282,21 @@ $ git reset --keep [commit]
 
 # 已经push到线上代码：恢复到指定版本命令
 # 后者的所有变化都将被前者抵消，并且应用到当前分支
+# 会自动提交到romote对应的分支
 $ git revert [commit] 
+
+# 添加-n/--no-commit 不会自动提交到服务器，而是添加到本地Commit History
+$ git revert --no-commit [commit]
+
+# [commitId]..[commitId]指定范围.其中HEAD表示当前commitId
+$ git revert -n [commitId]..[commitId]
 ```
 
-##10. 其他
+##10. commitId
+
+
+
+##11. 其他
 
 ```
 # 生成一个可供发布的压缩包
