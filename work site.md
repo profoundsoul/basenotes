@@ -1,4 +1,6 @@
 ## 常用的站点
+* Go Out There
+	- <https://github.com/getlantern/lantern/>Google投资翻墙服务-蓝灯 Lantern 
 * Task Site 
 	- <http://www.agentsstandby.com/>
 * Web Hack
