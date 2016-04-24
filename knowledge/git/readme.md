@@ -127,8 +127,7 @@ $ git merge [currentBranch]
 $ git merge [branch]				#将branch分支合并到currentBranch。
 $ git merge [branch] --stat                                #显示合并统计
 
-# 选择一个commit，合并进当前分支
-$ git cherry-pick [commit]
+
 
 # 删除分支
 $ git branch -d [branch-name]
@@ -282,7 +281,7 @@ $ git reset --keep [commit]
 
 # 已经push到线上代码：恢复到指定版本命令
 # 后者的所有变化都将被前者抵消，并且应用到当前分支
-# 会自动提交到romote对应的分支
+# 会自动提交到romote对应的分支；表示撤销此次版本历史的所有操作，只表示本次commitid的操作。
 $ git revert [commit] 
 
 # 添加-n/--no-commit 不会自动提交到服务器，而是添加到本地Commit History
@@ -290,6 +289,14 @@ $ git revert --no-commit [commit]
 
 # [commitId]..[commitId]指定范围.其中HEAD表示当前commitId
 $ git revert -n [commitId]..[commitId]
+
+# 撤销分支合并，并确定处理分支为合并分支（-m表示主干线，合并代码分支为1，其它依次排列）
+$ git revert -m/mainline 1 [commitid]
+
+# 选择一个commit，合并进当前分支
+# 将已经提交过的版本历史重新提交一次。与revert相反
+$ git cherry-pick [commit]
+
 ```
 
 ##10. commitId
