@@ -21,9 +21,21 @@ master分支是一条线，Git用master指向最新的提交，再用HEAD指向m
 ![dev分支](../images/dev.png)
 
 
-或者
+## 分支策略
 
-![多分支](../images/basic-branching-4.png)
+在实际开发中，我们应该按照几个基本原则进行分支管理：
+
++ master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活
++ dev分支上干活，dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并到master上，在master分支发布1.0版本；
++ 基于dev分支personal branch进行开发工作，开发完成后不断往dev分支进行合并
+
+所以团队合作的分支历史图看起来像这样：
+
+![多人分支协作图](../images/gitcooperate.png)
+
+
+
+
 
 
 

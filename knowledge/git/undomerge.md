@@ -102,7 +102,7 @@ Merge made by recursive.
 
 合并后版本历史如下：
 
-![图](../images/unmerge7 .png)
+![图](../images/unmerge7.png)
 
 
 
