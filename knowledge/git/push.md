@@ -16,7 +16,7 @@ git push  [--all | --mirror | --tags]
 
 ## 参数选项
 
-#### [--repo=<repository>]
+#### [--repo=<repository>]或[<repository>]
 
 push 到远程仓库的地址，允许是URLS或远程仓库别名
 
