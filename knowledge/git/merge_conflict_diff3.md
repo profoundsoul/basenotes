@@ -7,9 +7,9 @@
 + "真"合并（true merge）----指代码合并成功后，产生新的commits。该commits是两个被合并commits的子节点。如下图：
 
 ```
-o---o---o---A-------B------M-------------N  origin/master
-              \                          /
-              X---Y-----------Z         dev
+          A---B---C topic
+         /         \
+    D---E---F---G---H master
 
 ```
 
