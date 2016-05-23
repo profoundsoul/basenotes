@@ -48,8 +48,8 @@ M Commit就是true merge产生的，Commit B 和 Commit Z都是它的父节点�
 执行*git merge "merge topic branch" HEAD topic*命令会基于基线Commit D将topci分支与master分支进行合并，Commit H为合并成功后的版本历史：
 
 ```
-      A------B--------C topic
-    /                \
+    A------B--------C topic
+    /                 \
     D---E---F---G------H master
 
 ```
@@ -67,7 +67,7 @@ M Commit就是true merge产生的，Commit B 和 Commit Z都是它的父节点�
 
 下图：
 ```
-        A------B------C topic
+          A------B------C topic
         /               \
        D---E---F---G-----H master
 ```
