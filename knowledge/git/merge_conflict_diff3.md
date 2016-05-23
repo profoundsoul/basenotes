@@ -4,7 +4,7 @@
 
 + 快速前进-合并（fast-forward merge）----指当前本地分支HEAD是远程分支的祖先，按照git优先使用fast-forward 原则，必须先拉取进行代码合并。
 
-+ "真"合并（true merge）----指代码合并成功后，产生新的commits。该commits是两个被合并commits的子节点。如下图：
++ "真"合并（true merge）----指代码成功合并后产生新的commits的合并过程。如下图：
 
 ```
           A---B---C topic
@@ -13,9 +13,9 @@
 
 ```
 
-M Commit就是true merge产生的，Commit B 和 Commit Z都是它的父节点。
+H Commit就是true merge产生的，Commit C 和 Commit G都是它的父节点。
 
-## 分支合并
+##1. 分支合并
 
 ```
 1.  git merge [--no-commit/--commit] [-n/--no-stat] [-m <msg>] [<commits>]
@@ -32,9 +32,9 @@ M Commit就是true merge产生的，Commit B 和 Commit Z都是它的父节点�
 + [-m]：合并提交描述
 + [ < commits > ]：提交版本号或分支名称
 
-小建议：***可控力度较大的分支合并使用2直接合并即可***
+tips：***可控力度较大的分支合并使用2直接合并即可***
 
-##### DEMO：
+#### DEMO：
 
 假设版本图谱具有如下分支：
 
@@ -54,7 +54,7 @@ M Commit就是true merge产生的，Commit B 和 Commit Z都是它的父节点�
 
 ```
 
-### 三向合并（three-way-merge）
+##2. 三向合并（three-way-merge）
 
 分支合并对代码库的影响比较大，git merge 主要采用三向合并（three-way-merge）算法进行合并。
 
@@ -219,6 +219,138 @@ bottom
 ```
 
 总结：***基于基线版本，本地ours和远程theirs均对同一地方修改，且修改的内容不一致时，会产生合并冲突。***
+
+##3. diff3冲突解决方案
+
++ 上文产生的冲突按照git默认冲突样式<<<<<<<  ======== >>>>>>>>>仅仅只标识出local和remote的修改内容。要合并出正确的代码比较困难。
+
+```
+header
+<<<<<<< HEAD                        --------------------表示为local修改内容
+this is base line content.
+this is test add content.
+=======
+this is dev conments
+why not?
+>>>>>>> dev                            --------------------表示remote修改内容
+
+bottom
+```
+***鉴于git采用了三向合并（three-way-merge）合并算法，准确的合并规则至少应该有base版本代码进行对比合并，容易产生正确的合并结果。***
+
+
++ 另外，冲突合并采用纯手工删除代码，既不安全又不方便。
+
+###3.1  kdiff3冲突风格（merge.conflictstyle）
+
+接下来介绍一种合并冲突样式--**diff3**：
++ diff3 最大优点就是遵循three-way-merge冲突样式
++ diff3是基于默认样式的改进版本
+
+```
+<<<<<<<  HEAD 
+
+this is local modification
+
+||||||| merged common ancestors 
+
+this is common base context
+
+=======
+
+this is remote modification
+
+<<<<<<< Remote
+
+```
+说明：
++ <<<<<<< HEAD 与 ||||||| merged common ancestors 之间，是冲突部分在 HEAD 的内容
++ ||||||| merged common ancestors 与 ======= 之间，是冲突部分在基准点的内容
++ ======= 与 >>>>>>> remote 之间，是冲突部分在 remote分支的内容
+
+#### 使用方法
+
+```
+git config --global merge.conflictstyle diff3
+
+```
+
+执行上面配置后，我们基于上面的操作冲突实例，重新合并一下test分支，看看冲突效果：
+
+```
+header
+<<<<<<< HEAD
+this is base line content.
+this is test add content.
+||||||| merged common ancestors
+this is base line content.
+
+=======
+this is dev conments
+why not?
+>>>>>>> dev
+
+
+
+
+bottom
+```
+
+这样，我们就能比较明了的看到了base版本，基于base版本的对比很容易做出正确的合并判断。
+
+### 3.2 kdiff3合并工具
+
+上面我们通过设置merge.conflictstyle解决了base基准版本代码问题，但要一行一行手动删除代码，依然很是麻烦。有了kdiff3等mergetool就更加的方便明了：
+
+
+#### 使用方法
+
++ 下载kdiff3软件并安装（假设安装目录：C:\Program Files\KDiff3\kdiff3.exe）
++ 设置mergetool为kdiff3
+```
+git config --global merge.tool kdiff3
+```
++ 设置合并工具kdiff3程序路径（mergetool.kdiff3.path）
+```
+git config --global mergetool.kdiff3.path "C:\Program Files\KDiff3\kdiff3.exe"
+
+```
++ 产生冲突后，启动合并工具，解决冲突
+```
+git mergetool --tool=kdiff3 --no-prompt 
+```
+
+#### kdiff3合并代码
+
+下面我们用上面的冲突代码，执行git mergetool进行合并代码，图解如下：
+
+![kdiff3代码合并](../images/kdiff3-merge-skill.png)
+
+
+更多的kdiff3合并技巧尽在探索中。
+
+
+## 4.  sourceTree与kdiff3合并
+
+也许各位会说git命令玩起来太难了，刚开始确实有一点点，习惯了就好了而且快了。其实sourceTree也是可以与kdiff3等mergetool一起愉快的玩耍。
+
+###4.1 使用方法
+
++ 安装好kdiff3
++ 打开sourceTree，进入 工具->选项->比较面板 设置外部对比工具与合并工具为kdiff3
+
+![设置图谱](../images/sourcetree-setting.png)
+
+点击确定后，选择kdiff3的启动exe路径。
+
++ 使用sourcetree进行合并，对合并的冲突文件右键-->解决冲突-->打开外部合并工具
+
+![解决冲突并合并](../images/sourcetree-resolve-conflict.png)
+
+
+
+
+
 
 
 
