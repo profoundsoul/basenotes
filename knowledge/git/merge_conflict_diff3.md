@@ -4,23 +4,25 @@
 
 + 快速前进-合并（fast-forward merge）----指当前本地分支HEAD是远程分支的祖先，按照git优先使用fast-forward 原则，必须先拉取进行代码合并。
 
-+ "真"合并（true merge）----指代码合并成功后，产生新的commits。该commits是两个被合并commits的子节点。如下图：M Commit就是true merge产生的，Commit B 和 Commit Z都是它的父节点。
++ "真"合并（true merge）----指代码合并成功后，产生新的commits。该commits是两个被合并commits的子节点。如下图：
 
 ```
-	    o---o---o---A-------B------M-------------N  origin/master
-		     \                          /
-		      X---Y----------Z         dev
+o---o---o---A-------B------M-------------N  origin/master
+              \                          /
+              X---Y----------Z         dev
 
 ```
+
+M Commit就是true merge产生的，Commit B 和 Commit Z都是它的父节点。
 
 ## 分支合并
 
 ```
-1：git merge [--no-commit/--commit] [-n/--no-stat] [-m <msg>] [<commits>]
+1.  git merge [--no-commit/--commit] [-n/--no-stat] [-m <msg>] [<commits>]
 
-2：git merge <msg> HEAD [<commits>]
+2.  git merge <msg> HEAD [<commits>]
 
-git merge --abort
+     git merge --abort
 
 ```
 
@@ -28,7 +30,7 @@ git merge --abort
 + [--no-commit]：执行合并但不自动提交合并结果
 + [-n/--stat]：是否显示合并差异统计
 + [-m]：合并提交描述
-+ [<commits>]：提交版本号或分支名称
++ [ < commits > ]：提交版本号或分支名称
 
 小建议：***可控力度较大的分支合并使用2直接合并即可***
 
@@ -43,7 +45,7 @@ git merge --abort
 
 ```
 
-执行* git merge "merge topic branch" HEAD topic * 会基于基线Commit D将topci分支与master分支进行合并，Commit H为合并成功后的版本历史：
+执行*git merge "merge topic branch" HEAD topic*命令会基于基线Commit D将topci分支与master分支进行合并，Commit H为合并成功后的版本历史：
 
 ```
           A------B------C topic
@@ -59,22 +61,24 @@ git merge --abort
 官网解释：
 >  For conflicting paths, the index file records up to three versions: stage 1 stores the version from the common ancestor, stage 2 from HEAD, and stage 3 from MERGE_HEAD (you can inspect the stages with git ls-files -u). The working tree files contain the result of the "merge" program; i.e. 3-way merge results with familiar conflict markers <<< === >>>
 
-1是公共祖先。
-2是HEAD，git文档中有时候也称作ours。
-3是MERGE_HEAD，git文档中有时候也称作theirs。
++ 1是公共祖先。
++ 2是HEAD，git文档中有时候也称作ours。
++ 3是MERGE_HEAD，git文档中有时候也称作theirs。
 
 下图：
 ```
           A------B------C topic
-        /                        \
-    D---E---F---G-----H master
+         /                        \
+       D---E---F---G---H master
 ```
 
 按照合并原理，是基于topic和master两个共同祖先Commit D，将master（ours/HEAD/Local）与 topic（theirs）进行合并，推测规则如下：
-+ 基于共同祖先D ---- base版本。
++ 基于共同祖先Commit D ---- base版本。
 + 基于base版本对同一处代码，若local有修改，remote没改动。取local修改进行自动合并（auto-merge）
 + 基于base版本对同一处代码，若remote有修改，若local有修改。取remote修改进行自动合并（auto-merge）
 + 基于base版本对同一处代码，若local和remote都有进行修改。采用<<<<<<<  ======= >>>>>>>产生冲突。
+
+默认冲突样式：
 
 ```
 Here are lines that are either unchanged from the common
@@ -100,9 +104,6 @@ header
 this is base line content.
 
 
-
-
-
 bottom
 ```
 
@@ -113,9 +114,6 @@ header
 this is base line content.
 this is test add content.
 
-
-
-
 bottom
 ```
 
@@ -124,9 +122,6 @@ bottom
 ```
 header
 this is base line content.
-
-
-
 
 
 bottom
@@ -158,11 +153,8 @@ header
 this is base line content.
 + this is test add content.    --------------这是在test分支修改，基于基线只有test分支进行修改，所以直接采用dev分支内容。
 
-
-
-
 bottom
-+ this is dev conments    --------------这是在dev分支修改，基于基线只有dev分支进行修改，所以直接采用dev分支内容。
++ this is dev conments        --------------这是在dev分支修改，基于基线只有dev分支进行修改，所以直接采用dev分支内容。
 ```
 
 总结：***基于基线版本，仅有一个版本的修改时，不会产生冲突；会自动采用修改内容产生自动合并。***
@@ -177,9 +169,6 @@ bottom
 header
 this is dev conments
 why not?
-
-
-
 
 bottom
 this is dev conments
@@ -226,13 +215,12 @@ this is dev conments
 why not?
 >>>>>>> dev                            --------------------表示remote修改内容
 
-
-
-
 bottom
 ```
 
 总结：***基于基线版本，本地ours和远程theirs均对同一地方修改，且修改的内容不一致时，会产生合并冲突。***
+
+
 
 
 
