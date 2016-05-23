@@ -49,7 +49,7 @@ M Commit就是true merge产生的，Commit B 和 Commit Z都是它的父节点�
 
 ```
       A------B--------C topic
-      /                \
+    /                \
     D---E---F---G------H master
 
 ```
@@ -67,7 +67,7 @@ M Commit就是true merge产生的，Commit B 和 Commit Z都是它的父节点�
 
 下图：
 ```
-          A------B------C topic
+        A------B------C topic
         /               \
        D---E---F---G-----H master
 ```
