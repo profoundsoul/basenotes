@@ -49,8 +49,8 @@ M Commit就是true merge产生的，Commit B 和 Commit Z都是它的父节点�
 
 ```
       A------B--------C topic
-      /               \
-    D---E---F---G-----H master
+      /                \
+    D---E---F---G------H master
 
 ```
 
@@ -68,8 +68,8 @@ M Commit就是true merge产生的，Commit B 和 Commit Z都是它的父节点�
 下图：
 ```
           A------B------C topic
-      /                  \
-       D---E---F---G---H master
+        /               \
+       D---E---F---G-----H master
 ```
 
 按照合并原理，是基于topic和master两个共同祖先Commit D，将master（ours/HEAD/Local）与 topic（theirs）进行合并，推测规则如下：
