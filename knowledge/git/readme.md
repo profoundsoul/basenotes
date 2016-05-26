@@ -104,14 +104,20 @@ $ git branch -r
 # 列出所有本地分支和远程分支
 $ git branch -a
 
+```
+
+### 5.1 新建分支 
+
+```
 # 新建一个分支，但依然停留在当前分支
 $ git branch [branch-name]
 
-# 新建一个分支，并切换到该分支
-$ git checkout -b [branch]
+# 新建一个分支，并切换到该分支。可选commit，如果不写则为当前HEAD
+$ git checkout -b/ [branch] [commit]
 
-# 新建一个分支，指向指定commit
+# 新建一个分支，指向指定commit，可选commit，如果不写则为当前HEAD
 $ git branch [branch] [commit]
+$ git checkout [branch-name] 
 
 # 新建一个分支，与指定的远程分支建立追踪关系
 $ git branch --track [branch] [remote-branch]
@@ -119,24 +125,45 @@ $ git branch --track [branch] [remote-branch]
 # 切换到指定分支，并更新工作区
 $ git checkout [branch-name]
 
-# 建立追踪关系，在现有分支与指定的远程分支之间
-$ git branch --set-upstream [branch] [remote-branch]
+# 建一个分离HEAD分支，成为临时分支
+$ git checkout [commit]
 
+```
+
+###  5.2 合并分支
+
+```
 # 合并指定分支到当前分支
-$ git merge [currentBranch]
 $ git merge [branch]				#将branch分支合并到currentBranch。
 $ git merge [branch] --stat                                #显示合并统计
 
+# 合并指定分支，创建一个commit（不管是否为fast-forward），并建立tag追踪关系链标识合并分支和被合并分支
+$ git merge --no-ff [branch-name]
 
-
-# 删除分支
-$ git branch -d [branch-name]
-
-# 删除远程分支
-$ git push origin --delete [branch-name]
-$ git branch -dr [remote/branch]
+# 合并分支不自动创建commit
+$ git merge --no-commit --no-ff [branch-name]
 
 ```
+
+### 5.3 删除分支
+
+```
+# 删除分支
+$ git branch -D [branch-name]
+
+# 删除远程分支，git 1.7版本后支持该写法
+$ git push origin --delete [branch-name]
+
+# 直接删除远程分支
+$ git branch -r -d origin/branch-name
+
+# 推空分支origin中，变相删除远程分支
+$ git push origin :branchname
+
+```
+
+关于git checkout 以及HEAD变化值的关系，推荐博客：<http://www.cnblogs.com/hutaoer/archive/2013/05/07/git_checkout.html>
+
 
 ## 6. 标签
 
