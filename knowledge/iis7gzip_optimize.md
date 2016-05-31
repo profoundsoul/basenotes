@@ -89,7 +89,7 @@ frequentHitTimePeriod:10  //单位是秒
 方式一，配置web.config中location节点->webServer节点：
 
 ```
-<location path="mg.yitb.com">
+<location path="Default Web Site">
    <system.webServer>
       <serverRuntime enabled="true" frequentHitThreshold="1" frequentHitTimePeriod="00:10:00" />
    </system.webServer>
