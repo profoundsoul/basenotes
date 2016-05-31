@@ -1,4 +1,4 @@
-# IIS7 设置gzip静态内容压缩
+# IIS7+ 设置gzip静态内容压缩
 
 本以为很简单、IIS服务器完全自动支持的一个性能优化利器，现实却是随机部分文件压缩、时好时坏，让人很是琢磨不透。
 
@@ -80,7 +80,7 @@ frequentHitTimePeriod:10  //单位是秒
 
 #### 频繁访问参数设置
 
-方式一，配置web.config中location节点->webServer节点：
+方式一，配置web.config中location节点->webServer节点**只适合IIS7.0/7.5**：
 
 ```
 <location path="Default Web Site">
