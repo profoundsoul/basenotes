@@ -15,9 +15,9 @@
 
 参考图解：
 
-![图一](images/iis7staticcompress_setting2.png)
+![图一](images/iis7staticcompress_setting.png)
 
-![图二](images/iis7staticcompress_setting1.png)
+![图二](images/iis7staticcompress_setting2.png)
 
 另外，如果是对整个IIS进行"压缩"进行配置，可以看到静态压缩规则：
 + 对超过2700字节（默认值）文件进行压缩
@@ -28,7 +28,11 @@
 ***可以对静态资源的gzip压缩规则进行修改***
 
 
-当然有可能这样配置后无效，解决方法如下： 
+#### Gzip无效常见解决方法
+
+[什么是 MIME TYPE？](http://www.cnblogs.com/jsean/articles/1610265.html)
+
+解决方法如下： 
 
 1、打开IIS管理器->"功能视图"->MIME类型，确认个资源文件的MIME类型。例如：设置.js的mime类型为application/x-javascript或者application/javascript
 
@@ -51,8 +55,6 @@
     </staticTypes> 
 </httpCompression>
 ```
-
-[什么是 MIME TYPE？](http://www.cnblogs.com/jsean/articles/1610265.html)
 
 我们可以看出，IIS实际上是根据MIME类型来决定是否启用HTTP压缩，以及压缩比例、压缩类型等。例如上面提到.js的MIME类型可能是application/javascript，我们在httpCompression节点内容，检查staticTypes是否存在该MIME类型。
 
@@ -84,7 +86,7 @@ frequentHitTimePeriod:10  //单位是秒
 
 #### 频繁访问参数设置
 
-方式一，配置web.config中webServer节点：
+方式一，配置web.config中location节点->webServer节点：
 
 ```
 <location path="mg.yitb.com">
@@ -127,6 +129,36 @@ set config -section:system.webServer/serverRuntime -frequentHitThreshold:1
 ## 操作时间范围为10分钟
 set config -section:system.webServer/serverRuntime -frequentHitTimePeriod:00:10:00   
 ```
+
+
+#### 隔天Gzip压缩失效
+
+如果当天设置了以上步骤后，Gzip很给力的跑起来了；满意睡一觉后，第二天发现请求的脚本有没有Gzip了，而且是连续好几次访问都没有压缩，这是怎么回事？
+
+
+##### 经大牛多方测试，最终得出一个结论：
+
+在IIS7/7.5中，满足两个条件时，会出现该问题：
++ 应用程序池配置了administrator的账号权限。
++ 当应用程序池处理静态文件压缩的时候回收应用程序池。
+
+**满足上述两个条件，会导致压缩缓存目录被删除。直到下次应用程序池健康重启的时候，此压缩缓存目录才会被重新创建**
+
+##### 解决方案1：
+
+打开IIS7管理器->应用程序池->应用程序池默认设置：
+
+![应用程序池回收规则设置](images/appliciationpoolsetting.png)
+
+![应用程序池回收规则设置2](images/appliciationpoolsetting2.png)
+
+***禁用固定时间间隔回收，改成在一个相对空闲的固定时刻回收，例如半夜4点***
+
+##### 解决方案2：
+
+如果没有必要，则不要给应用程序池配置administrator的账号，使用内置的账号不会出现这样的问题。
+
+
 
 
 
