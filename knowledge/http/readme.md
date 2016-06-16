@@ -1,4 +1,10 @@
 # HTTP协议
+
+[一个完整的HTTP事物过程探究](http://blog.csdn.net/yipiankongbai/article/details/25029183)
+
+
+
+
 > HTTP协议是超文本传输协议（HyperText Transfer Protocol）的缩写。它是万维网（www）的基础。HTTP协议位于TCP/IP协议栈的应用层。
 
 **主要特点：**
