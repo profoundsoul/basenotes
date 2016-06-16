@@ -1,5 +1,7 @@
 # IIS 服务器配置cache Control
 
+[Web缓存机制](http://www.alloyteam.com/2012/03/web-cache-2-browser-cache/#prettyPhoto)
+
 在静态页面、静态资源中broswers cache是提升性能的利器，但每次发布更新又很让人**蛋疼**。下面我们来聊聊常见的缓存策略控制：
 
 ## IIS 全局cache配置
