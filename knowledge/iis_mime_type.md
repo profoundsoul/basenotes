@@ -39,13 +39,15 @@
 当然，配置完成后您的web.config内容如下：
 
 ```
-<system.webServer>
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <system.webServer>
         <staticContent>
             <remove fileExtension=".json" />
             <mimeMap fileExtension=".json" mimeType="text/json" />
-            <clientCache cacheControlMode="UseMaxAge" cacheControlMaxAge="00:02:00" httpExpires="Sun, 19 Jun 2016 00:00:00 GMT" />
+            <clientCache cacheControlMode="UseMaxAge" cacheControlMaxAge="00:02:00" />
         </staticContent>
     </system.webServer>
-
+</configuration>
 ```
 
