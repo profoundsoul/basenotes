@@ -1,10 +1,4 @@
-# IIS7 设置gzip静态内容压缩
-
-参考原文：
-
-<http://www.eduyo.com/server/windows/278-1.html>
-
-<http://niutuku.com/tech/www/iis7-gzip.shtml>
+# IIS7+ 设置gzip静态内容压缩
 
 本以为很简单、IIS服务器完全自动支持的一个性能优化利器，现实却是随机部分文件压缩、时好时坏，让人很是琢磨不透。
 
@@ -86,7 +80,7 @@ frequentHitTimePeriod:10  //单位是秒
 
 #### 频繁访问参数设置
 
-方式一，配置web.config中location节点->webServer节点：
+方式一，配置web.config中location节点->webServer节点**只适合IIS7.0/7.5**：
 
 ```
 <location path="Default Web Site">
@@ -159,6 +153,13 @@ set config -section:system.webServer/serverRuntime -frequentHitTimePeriod:00:10:
 如果没有必要，则不要给应用程序池配置administrator的账号，使用内置的账号不会出现这样的问题。
 
 
+## 参考原文文献：
+
+<http://www.eduyo.com/server/windows/278-1.html>
+
+<http://niutuku.com/tech/www/iis7-gzip.shtml>
+
+[IIS1.0-8.0内部运行机制及Asp.net执行过程详解](http://www.cnblogs.com/SALIN/archive/2012/08/13/2636511.html)
 
 
 
