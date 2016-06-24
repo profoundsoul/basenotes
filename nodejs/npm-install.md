@@ -1,6 +1,7 @@
 # install 相关问题
 
 使用npm过程中install命令最为常用，主要有三大使用方法：
+
 1. npm install something@versions --save-dev
 2. npm install (使用package.json中dependencies属性)
 3. npm i -g something@versions --save-dev
