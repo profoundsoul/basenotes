@@ -2,7 +2,7 @@
 
 主要描述Grunt入门基础相关内容：
 + [Gruntfile 任务配置规则和技巧](config_rule_skill.md)
-+ Gruntfile src-dest文件配置
++ [Gruntfile src-dest文件配置](src-dest.md)
 + Globbing Pattern 通配符
 + Grunt Template模板
 + Grunt registerTask任务注册
