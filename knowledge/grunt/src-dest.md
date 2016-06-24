@@ -36,8 +36,30 @@ module.exports= function(grunt){
 
 对于具有src-dest的三种方式（src-dest、Files Array Format、Custom Filter Format）还支持一些附件的属性：
 + filter--fs.Stats.method name与自定义返回值为Boolean
-+   
++ expand 处理动态src-dest文件映射。
++ 除了基础属性外，其它都会传入任务中，允许自定义处理
 
 
 ## src-dest 
+
+采用这种模式，只支持一个dest，N个src。采用1-N的dest-src的文件映射。
+
+```javascript
+grunt.initConfig({
+	uglify: {
+		main:{
+			dest:'dist/index.js',
+			src:['index.js', 'main.js']
+		}
+	}
+});
+
+grunt.loadNpmTasks('grunt-contrib-uglify');
+
+```
+
+## File Object Format 文件对象格式
+
+
+
 
