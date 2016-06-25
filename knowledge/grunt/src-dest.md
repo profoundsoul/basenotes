@@ -60,6 +60,60 @@ grunt.loadNpmTasks('grunt-contrib-uglify');
 
 ## File Object Format 文件对象格式
 
+采用这种方式，很是简洁优雅；然后不支持除src和dest之外的参数设置，比如：expand、filter等。
 
+```javascript
+grunt.initConfig({
+	cssmin:{
+		main:{
+			'dist/main.css':['main.css', 'index.css']
+		}
+	}
+});
 
+```
+
+## Files Array Format 文件数组格式
+
+采用这种文件数组格式与src-dest没什么区别，唯一区别的地方就是支持多个dest数组。
+
+```javascript
+grunt.initConfig({
+	concat:{
+		options:{
+			separator:'\n',
+			banner:'/*this is my merge files*/'
+		},
+		merge:{
+			files:[
+				{dest:'pro.css',src:['user.css', 'account.css']},
+				{dest:'framework.css',src:['common.css', 'fw.css']}
+			]
+		}
+	}
+});
+
+```
+
+## dynamic Files Mapping 动态文件路径映射
+
+上面介绍的大部分都是指定dest具体文件方式，但在项目中常常会涉及到无法固定具体文件，需要按照src动态生成dest文件（也允许dest文件加文件名后缀）。
+
+```javascript
+grunt.initConfig({
+	options:{
+		optimizationLevel:3
+	},
+	imagemin:{
+		dynamic:{
+			expand: true,                  // Enable dynamic expansion 
+			cwd: 'src/',                   // Src matches are relative to this path
+			filter:'isFile', 
+			src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match 
+			dest: 'dist/'
+		}
+	}
+});
+
+```
 
