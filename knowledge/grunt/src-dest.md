@@ -164,7 +164,7 @@ grunt.initConfig({
 #### dest调整
 
 + ext 和extDot是调整dest文件后缀
-+ fattern属性是设置是否移除src原有目录结构，true表示移除，false表示不移除
++ fattern属性是设置是否移除src（不包含基础路径cwd在内）原有目录结构，true表示移除，false表示不移除
 + rename 自定义dest目录结构
 
 
@@ -190,13 +190,17 @@ grunt.initConfig({
 	imagemin:{
 		min:{
 			expand: true,
-			cwd:'images/'
+			cwd:''
 			src:['**/*.{jpg,png,gif}'],
 			dest:'dist',
-			fattern:false,
-			rename:function(srcfile, destfile){
-				//取出文件后缀，将每个文件都加上.min.picextension,此处没有实现功能，需要自己去用node实现
-				return destfilepath;
+			fattern:false,		//此时该参数已经失效
+			rename:function(dest, src){
+				//取出文件后缀，将每个文件都加上.min.extension
+				var path = require('path'),
+                        subdir  = path.dirname(src),
+                        ext  = path.extname(src),
+                        name = path.basename(src, ext);
+                    return dest + '/' + subdir +'/' + name + '.min' + ext;
 			}
 		}
 	}
