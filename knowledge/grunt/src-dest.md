@@ -4,7 +4,7 @@
 + src-dest Format：其中src支持字符串路径数组和字符串路径，dest仅支持字符串路径
 + Files Object Format：文件对象属性格式。key-value表示dest-src，支持多个dest-src
 + Files Array Format：dest-src数组形式。
-+ Custom Filter Format： 自定义帅选格式。支持filter和expand两种形式。
++ Custom Filter Format： 自定义帅选格式。expand设置为true。
 
 
 ```
@@ -38,6 +38,15 @@ module.exports= function(grunt){
 + filter--fs.Stats.method name与自定义返回值为Boolean
 + expand 处理动态src-dest文件映射。
 + 除了基础属性外，其它都会传入任务中，允许自定义处理
+
+
+如果expand设置为true,这三种模式还支持一下属性：
++ cwd 所有的src都相对此目录处理文件
++ ext 替换dest生成文件后原有的文件后缀
++ extDot 枚举值{first,last}。表示是从第一个句号还是从最后一个逗号截取文件后缀。
++ flatten Boolean{true,false}是否移除src中文件目录，默认值为false。
++ rename Function(src,dest)函数，返回新的dest路径和文件名字
+
 
 
 ## src-dest 
@@ -111,6 +120,83 @@ grunt.initConfig({
 			filter:'isFile', 
 			src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match 
 			dest: 'dist/'
+		}
+	}
+});
+
+
+动态文件映射比较灵活，主要属性可以分为三类：
++ src 过滤{filter和cwd}
++ dest 动态调整{ext, extDot, fattern, rename}
+
+#### src 过滤
+
++ cwd 指定src的基础目录,所有的src都依据此目录
++ filter主要是自定义过滤文件或目录
+
+```javascript
+grunt.initConfig({
+	uglify:{
+		dynamic:{
+			expand:true,
+			cwd:'src/',
+			src:['lib/**/*.js', 'model/**/*.js'],
+			dest:'dist',
+			filter:'isFile'
+		},
+		custom:{
+			expand:true,
+			cwd:'src/',
+			src:'**',
+			dest:'dist',
+			filter:function(filepath){
+				return grunt.file.isFile(filepath) && require('fs').readdirSync(filepath).length === 0;
+			}
+		},
+	}
+});
+
+
+```
+
+
+#### dest调整
+
++ ext 和extDot是调整dest文件后缀
++ fattern属性是设置是否移除src原有目录结构，true表示移除，false表示不移除
++ rename 自定义dest目录结构
+
+
+```javascript
+grunt.initConfig({
+	cssmin:{
+		dynamic:{
+			expand: true,
+			cwd:'styles',
+			src:['**/*.css'],
+			dest:'dist',
+			ext:'.min.css', //所有压缩后文件都变成.min.css后缀
+			extDot:'last'	//只从最后一个句号开始匹配后缀，例如：如果是如此中是.min.css后缀，那么执行后将会变成.min.min.css文件
+		},
+		fattern:{
+			expand: true,
+			cwd:'styles',
+			src:['**/*.css'],
+			dest:'dist/all',
+			fattern:true		//生成后，将会所有文件都放到dist/all/目录中，原有的目录结构丢失
+		}
+	},
+	imagemin:{
+		min:{
+			expand: true,
+			cwd:'images/'
+			src:['**/*.{jpg,png,gif}'],
+			dest:'dist',
+			fattern:false,
+			rename:function(srcfile, destfile){
+				//取出文件后缀，将每个文件都加上.min.picextension,此处没有实现功能，需要自己去用node实现
+				return destfilepath;
+			}
 		}
 	}
 });
