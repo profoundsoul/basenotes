@@ -88,9 +88,9 @@ h1:before {content:url(/i/w3school_logo_white.gif)}
 <div class="before"> me</div>
 ```
 
-! [正常](images/pseudo_class_ele1.png)//无内容
+![正常](images/pseudo_class_ele1.png)//无内容
 
- ! [鼠标移上](images/pseudo_class_ele2.png)//鼠标移至 div 上时，新内容出现。
+![鼠标移上](images/pseudo_class_ele2.png)//鼠标移至 div 上时，新内容出现。
 
 
  #### 配合取值函数attr()使用
