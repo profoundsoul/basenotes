@@ -283,11 +283,55 @@ define(['module'], function (module) {
 
 ## shim
 
-+ 设置依赖moudles
-+ 导出moudle
-+ 定义加载顺序
-+ 传统脚本不适用define定义module加载，定义依赖并设置module ID
+> 加载非AMD标准模块时使用到的配置，如果加载的path已经找到了moduleName，则不执行shim配置。因此shim配置规则与path中名称必须一致。
 
+```javascript
+// shim中的属性名字（modulepath1）必须存在paths对象属性名中.在已经在找modulepath1后，加载过程中去映射shim中对应配置。
+// 换句话说，即使不配置shim，如果没有deps的话，也是允许加载非AMD模块的，只是没有exports而已罢了
+require.config({
+    shim:{
+        modulepath1:{
+            exports:'globalVariable'
+        }
+    },
+    paths:{
+        modulepath1:'/src/source'
+    }
+});
+
+```
+
+#### exports 非标准AMD模块factory返回值暴露
+
+模块加载完后，exports主要的作用是，将global Variable包装为当前(非AMD标准库)的返回值。
++ exports值是由global全局调用方式的字符串
+
+```javascript
+require.config({
+        shim: {
+            'jquery-private': {
+                exports: 'jQuery'
+            },
+            'jquery.custom': {
+                deps: ['jquery-private'],
+                exports: 'jQuery.fn.custom'
+            }
+        },
+        paths: {
+            'jquery-private': '../lib/jquery-1.12.3',
+            'jquery.custom': 'jquery.custom.plugin'
+        }
+    });
+
+    //此时允许不需要全局用jquery访问jQuery.fn.Custom插件，直接使用customPlugin即可
+    require(['jquery.custom'], function (customPlugin) {
+        console.log(customPlugin);
+    });
+```
+
+#### deps 模块依赖配置
+
+设置依赖moudles，定义加载顺序
 
 ```javascript
 requirejs.config({
