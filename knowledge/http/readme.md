@@ -5,7 +5,8 @@
 
 
 
-> HTTP协议是超文本传输协议（HyperText Transfer Protocol）的缩写。它是万维网（www）的基础。HTTP协议位于TCP/IP协议栈的应用层。
+> HTTP协议是超文本传输协议（HyperText Transfer Protocol）的缩写。它是万维网（www）的基础。
+HTTP协议位于TCP/IP协议的应用层协议，它本身不涉及数据包(packet)的传输，主要是规定了客户端和服务器端通讯格式，默认采用80端口。
 
 **主要特点：**
 
@@ -32,12 +33,21 @@
 GET /index.html
 ```
 
-***由于没有协议头，此版本只支持纯文本；富文本、图片、流媒体等均不支持***
+***，由于没有协议头，此版本只支持纯文本、html页面；富文本、图片、流媒体等均不支持***
+
+协议规定，服务器只能回应HTML格式的字符串，不能回应别的格式。
+
+```
+<html>
+  <body>Hello World</body>
+</html>
+```
+
+服务器发送完毕，就关闭TCP连接
 
 #### HTTP 1.0
 
-+ 支持POST请求，向服务器提交数据
-
++ 支持POST、HEAD、GET请求类型
 + 具有HTTP协议头，支持各种媒体类型。
 
 ```html
