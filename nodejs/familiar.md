@@ -44,8 +44,9 @@ HTML-CSS-JS Prettify  [ctrl+shift+H]
 SublimeCodeIntel
 Vue Syntax Highlight  
 MarkDown Editing   
-ColorSublime  
-
+ColorSublime
+Theme
+Alignment
 ```
 
 调整sidebar主题
