@@ -4,8 +4,9 @@
 
 以administrator身份运行powershell：
 
-```
+```shell
  npm isntall -g npm-windows-upgrade
+
  npm-windows-upgrade
 ```
 
@@ -27,7 +28,9 @@ https://nodejs.org/en/download/
 #### siblime text3折叠和展开代码
 
 按ctrl + k，然后按ctrl + 1，可收起所有函数
+
 按ctrl + k，ctrl + 2 （这个数字可以变的，表示收起的函数的级数，你试试就明白了）
+
 按ctrl + k， 再按 ctrl + j 显示所有函数
 
 
