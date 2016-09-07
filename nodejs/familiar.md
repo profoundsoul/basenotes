@@ -47,12 +47,20 @@ MarkDown Editing
 ColorSublime
 Theme
 Alignment
+DocBlockr
 ```
 
 调整sidebar主题
 
 ```
-"theme": "Cola.sublime-theme"
+"color_scheme": "Packages/User/SublimeLinter/Bittersweet (SL).tmTheme",
+"font.size":19,
+"theme": "Cola.sublime-theme",
+// The number of spaces a tab is considered equal to
+"tab_size": 2,
+
+// Set to true to insert spaces when tab is pressed
+"translate_tabs_to_spaces": true,
 ```
 
 需要调整sidebar字体、颜色、间距，需要按照一个插件PackageResourceViewer
