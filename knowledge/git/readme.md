@@ -268,6 +268,9 @@ $ git remote add [shortname] [url]
 # 取回远程仓库的变化，并与本地分支合并
 $ git pull [remote] [branch]
 
+# 拉取线上代码，并重置本地commits至remote commits，会丢失本地commits，需慎用
+$ git pull --rebase [remote] [branch]
+
 # 上传本地指定分支到远程仓库
 $ git push [remote] [branch]
 
