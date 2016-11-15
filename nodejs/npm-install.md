@@ -6,6 +6,23 @@
 2. npm install (使用package.json中dependencies属性)
 3. npm i -g something@versions --save-dev
 
+## 本地模式与全局模式
+
+```shell
+npm [install/i] -g [package_name]
+```
+
+是否加-g/--global控制是否全局安装，另种安装的区别如下：
+
+| 模式    |   可通过Require使用            | 注册PATH环境变量    |
+|---------|--------------------------------|---------------------|
+|本地模式 | 是                             | 否                  |
+|全局模式 | 否                             | 是                  |
+ 
+注意：***全局模式安装的包并不能直接在javascript文件中使用require获得，是因为require不会搜索/usr/local/lib/node_modules/目录***
+
+
+
 ## 查找安装目录
 
 使用方法1和方法2都是项目安装，最重要的第一件事就是**查找安装目录**：
