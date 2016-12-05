@@ -5,7 +5,7 @@
 [Mongodb For Windows](http://www.cnblogs.com/highsea90/p/4195927.html)
 [Window 安装MongoDB](http://www.runoob.com/mongodb/mongodb-window-install.html)
 
-### auth
+### 安装auth
 
 > 如果针对已经安装window service 的情况，需要先停止window Services并移除该服务，然后重新安装并加上--auth
 
@@ -69,6 +69,90 @@ db.dropDatabase()           删除当前数据库
 
 ```shell
 help | db.help() | db.yourColl.help() | db.youColl.find().help()
+```
+
+## 数据库权限/角色
+
+安装好MongoDB后，在cmd中使用**mongo**进入数据库
+
+### 创建第一个账户
+
+> 刚进去时，mongodb允许你免认证创建第一个账户用户，一旦创建了一个后就必须
+> authorized.
+
+```shell
+use admin 
+
+db.createUser({
+    user:'admin',
+    pwd:'admin',
+    roles:[
+        {
+            role:'useAdminAnyDatabase',
+            db:'admin'
+        }
+    ]
+})
+
+```
+
+注意：**创建的第一个账户必须是具有管理所有数据的权限的角色账号，否则数据库将需要重新创建，因为无法管理所有数据库，所以无法创建其它数据库及创建其相应的账号**
+
+**角色分类：**
+
++ 用户使用权限
++ 管理员权限
++ 所有数据库权限集
++ 最高权限
++ 集群权限
++ 备份/恢复权限
+
+
+----------------------------------------------------
+
+常见用户角色列表：
+
+| 角色            | 描述                                     |
+|-----------------|------------------------------------------|
+|read             | 指定数据库用户角色                          |
+|readWrite        | 指定数据库用户角色                          |
+|dbAdmin          | 指定数据库管理员角色，管理表结构、索引等权限不能分配用户权限角色  |
+|dbOwner          | 指定数据库管理员角色，当前数据库最高权限         |
+|userAdmin        | 指定数据库管理员角色，拥有指定任务用户角色、权限特权      |
+|readAnyDatabase  | 所有数据库读权限                    
+|readWriteAnyDatabase | 所有数据库读写权限                         |
+|userAdminAnyDatabase | 所有数据库userAdmin权限
+|dbAdminAnyDatabase   | 所有数据库dbAdmin权限
+|root                 | superuser 最高权限                         |
+
+
+上述主要列举出常见使用的角色，除此之外还有：数据库恢复备份/集群角色
+
+
+### 授权方式
+
+```shell
+use admin
+db.auth("admin","12345678") #认证，返回1表示成功
+
+#或
+mongo -u admin -p 12345678 --authenticationDatabase admin
+```
+
+### 创建指定数据库用户
+
+管理员角色账户授权后，可以进行创建指定db用户
+
+```shell
+use mytest
+db.createUser({
+   user: "test",
+   pwd: "12345678",
+   roles: [
+      { role: "dbOwner", db: "mytest" }
+   ]
+ }
+)
 ```
 
 
