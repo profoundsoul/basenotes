@@ -78,6 +78,14 @@ Visit http://127.0.0.1:4040/?port=7777 to start debugging.
 
 启动node程序的--debug-brk与--debug-port中的端口必须对应上。默认情况如果不设置端口为5858
 
+## node-debug 
+
+```
+node-debug --web-port=2001 --debug-port=2000 file
+```
+
+基于node-inspector插件集成调试脚本，node-debug 是最简单调试方法
+
 
 
 
