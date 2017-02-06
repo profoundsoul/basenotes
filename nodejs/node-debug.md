@@ -89,7 +89,7 @@ node-debug --web-port=2001 --debug-port=2000 file
 #### Node-inspector console not working in latest version of Google Chrome
 
 
-The latest version of Google Chrome doesn’t execute commands when the Enter button is pressed and instead just wraps to a new line. Instead of downgrading Chrome, a quick fix appears on the node-inspector issue list [here.]:https://maltronic.io/2016/12/01/node-inspector-console-not-working-in-latest-version-of-google-chrome/
+The latest version of Google Chrome doesn’t execute commands when the Enter button is pressed and instead just wraps to a new line. Instead of downgrading Chrome, a quick fix appears on the node-inspector issue list [here.](https://maltronic.io/2016/12/01/node-inspector-console-not-working-in-latest-version-of-google-chrome/)
 
 
 
