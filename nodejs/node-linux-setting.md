@@ -64,5 +64,15 @@ rm -rf /usr/local/bin/name
 1   npm config set prefix=< nodejs安装根目录 >
 2   npm config set cache=< nodejs安装根目录 >/cache
 
+# npm install node-sass (失败)
+
+安装cnpm进行安装
+
+```
+npm install cpnm -g
+ln -s 安装路径 /usr/local/bin/cnpm
+```
+
+
 
 
