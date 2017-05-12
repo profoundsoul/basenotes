@@ -12,6 +12,12 @@
 npm config set registry http://registry.cnpmjs.org/
 npm config set registry http://registry.npm.taobao.org/
 
+方法二：
+
+```
+npm install npm -g --ca=null
+```
+
 # 查找文件 
 
 find -name 'nrm'
