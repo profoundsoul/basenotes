@@ -1,3 +1,52 @@
+# 安装sz和rz上传文件
+
+## 方法一
+
+```shell
+cd /tmp
+wget http://www.ohse.de/uwe/releases/lrzsz-0.12.20.tar.gz
+tar zxvf lrzsz-0.12.20.tar.gz && cd lrzsz-0.12.20
+
+./configure && make && make install
+```
+
+注意：上面安装过程默认把lsz和lrz安装到了/usr/local/bin/目录下，现在我们并不能直接使用，下面创建软链接，并命名为rz/sz：
+
+```shell
+ln -s /usr/local/bin/lrz /usr/binrz
+ln -s /usr/local/bin/lsz /usr/binsz
+```
+
+### 安装失败
+
+需要安装gcc
+
+```shell
+yum install gcc 
+```
+
+## 方法二：
+
+在centOS中可以使用yum直接安装
+
+```shell
+yum install -y lrzsz
+```
+
+# 解压tar文件
+
+## tar.gz 类型文件
+
+```shell
+tar -zxvf filename.tar.gz
+```
+
+## tar.xz 类型文件
+
+```shell
+tar -xvf *.tar.xz
+```
+
 
 # 安装node切换淘宝镜像
 1、安装node环境
