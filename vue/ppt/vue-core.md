@@ -396,7 +396,6 @@ Vue.component('example', {
 [slide]
 ## Question
 <br/>
-
 + 单向数据流不允许直接修改Props，如果子组件需要改变父容器的值，应该怎么处理？
 
 [slide]
@@ -579,7 +578,6 @@ Vue.component('async-webpack-example', ()=>import('./my-async-component'))
 
 [slide]
 # 三、插件系统
-<br>
 
 >插件通常会为 Vue 添加全局功能。插件的范围没有限制
 
@@ -645,7 +643,6 @@ Vue.use 会自动阻止注册相同插件多次，届时只会注册一次该插
 
 [slide]
 # 官方插件
-<br>
 + vue-router 实现SPA单页路由
     + SPA具有前端路由，url和入口控制性增强
     + 可做功能切换节流，可做懒加载（结合Webpack和Vue的异步组件能力）
@@ -654,7 +651,6 @@ Vue.use 会自动阻止注册相同插件多次，届时只会注册一次该插
     + 包含state、mutation、actions等主要部分
     + 全局状态管理，多组件共享
     + 响应式状态，state变化View绑定VDom节点变化
-
 Tips: Vuex 经常使用铁四角[store.state、store.mutation、组件computed、页面模板绑定]
 
 [slide]
