@@ -21,11 +21,11 @@
 <div class="slides">
     <slides id="container">
         <slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
-<h1>Vue2技术体系</h1>
-<h2>演讲者：linq</h2>
+<h1>Vue2前端技术生态</h1>
+<h2>演讲者：LinQ</h2>
 <p><br/></p>
 <ul>
-<li>Vue2核心基础知识</li>
+<li>Vue2核心基础</li>
 <li>组件系统（props、emit events、slot）</li>
 <li>扩展能力-插件</li>
 <li>webpack模块捆绑器</li>
@@ -34,11 +34,7 @@
 
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
-<h1>一、Vue2基础</h1>
-
-</article></section></slide>
-<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
-<h1>介绍</h1>
+<h1>一、Vue2核心基础</h1>
 <p><br/></p>
 <ul>
 <li>Vue2实例生命周期</li>
@@ -54,12 +50,10 @@
 <p>每个 Vue 实例在被创建之前都要经过一系列的初始化过程。例如需要设置数据监听、编译模板、挂载实例到 DOM、在数据变化时更新 DOM 等。同时在这个过程中也会运行一些叫做<strong>生命周期钩子</strong>的函数，给予用户机会在一些特定的场景下添加他们自己的代码</p>
 </blockquote>
 <h2>Created</h2>
-<p><br/></p>
 <blockquote>
 <p>到该钩子执行，Vue实例已经完成：初始化事件、响应式data。</p>
 </blockquote>
 <h2>mounted</h2>
-<p><br/></p>
 <blockquote>
 <p>到该钩子执行，Vue实例已经完成template模板编译、挂载到el跟节点。此时Vue的内容在html文档DOM树中</p>
 </blockquote>
@@ -96,6 +90,9 @@
 <p>Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM 绑定至底层 Vue 实例的数据。所有 Vue.js 的模板都是合法的 HTML ，所以能被遵循规范的浏览器和 HTML 解析器解析。</p>
 </blockquote>
 <p>在底层的实现上，Vue将模板编译成虚拟DOM渲染函数。结合响应系统，在应用状态改变时，Vue 能够智能地计算出重新渲染组件的最小代价并应用到 DOM 操作上。</p>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
 <h2>文本</h2>
 <p><br/></p>
 <pre><code class="html">&lt;span&gt;Message: {{ msg }}&lt;/span&gt;
@@ -108,14 +105,13 @@
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article>
 <h2>v-bind或:简写</h2>
-<p><br/></p>
 <pre><code class="html">&lt;button :title=&quot;tips&quot;&gt;&lt;/button&gt;
 &lt;a v-bind:href=&quot;url&quot;&gt;&lt;/a&gt;
 &lt;div v-bind:class=&quot;{ active: isActive }&quot;&gt;&lt;/div&gt;
 &lt;div v-bind:style=&quot;{ color: activeColor, fontSize: fontSize + &#39;px&#39; }&quot;&gt;&lt;/div&gt;
 </code></pre>
-<h2>v-on或@简写</h2>
 <p><br/></p>
+<h2>v-on或@简写</h2>
 <pre><code class="html">&lt;a @click=&quot;doSomething(username, $event)&quot;&gt;&lt;/a&gt;
 &lt;a @click=&quot;doSomething(&#39;first&#39;)&quot;&gt;&lt;/a&gt;
 &lt;a @click.prevent=&quot;doSomething(&#39;first&#39;)&quot;&gt;&lt;/a&gt;
@@ -132,6 +128,9 @@
 &lt;input v-model.number=&quot;age&quot; type=&quot;number&quot;&gt;
 &lt;input v-model.trim=&quot;msg&quot;&gt;
 </code></pre>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
 <h2>v-if/v-else/v-else-if</h2>
 <p><br/></p>
 <pre><code class="html">&lt;h1 v-if=&quot;ok&quot;&gt;Yes&lt;/h1&gt;
@@ -143,6 +142,9 @@
 &lt;p&gt;Paragraph 2&lt;/p&gt;
 &lt;/template&gt;
 </code></pre>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
 <h2>v-show</h2>
 <p><br/></p>
 <pre><code class="html">&lt;h1 v-show=&quot;ok&quot;&gt;Hello!&lt;/h1&gt;
@@ -156,6 +158,9 @@
 <li>v-if 懒惰，条件为真时才渲染，可以用来做<strong>懒惰加载组件或弹窗</strong></li>
 <li>v-show 只是相当于style=&#39;display:none&#39;，<strong>频繁渲染且变化不大的组件</strong></li>
 </ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
 <h2>v-if 与 v-for一起使用</h2>
 <p><br/></p>
 <ul>
@@ -187,13 +192,8 @@
 <ul>
 <li>Data中数据相当发布者（publish）</li>
 <li>而VDom相当于watcher订阅者（subscribe）</li>
-</ul>
-<blockquote>
-<p>数据实现由Model Data更新Dom节点</p>
-</blockquote>
-<ul>
 <li>VDom Listener事件订阅（input），更新Data数据</li>
-<li>用户文本框输入，HTML节点发布事件</li>
+<li>用户输入，HTML节点发布事件</li>
 </ul>
 
 </article></section></slide>
@@ -207,6 +207,14 @@
 <blockquote>
 <p>模板内的表达式是非常便利的，但是它们实际上是用于简单运算的。在模板中放入太多的逻辑会让模板过重且难以维护，而且data中的属性都具有观察能力，性能和实现难度都会加大。</p>
 </blockquote>
+<ul class="fadeIn">
+<li>同时观察多个响应式数据</li>
+<li>缓存数据的能力</li>
+</ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<p><br></p>
 <pre><code class="javascript">var vm = new Vue({
         el: &#39;#demo&#39;,
         data: {
@@ -220,16 +228,10 @@
     }
 })
 </code></pre>
-<p><br/></p>
-<ul class="fadeIn">
-<li>同时观察多个响应式数据</li>
-<li>缓存数据的能力</li>
-</ul>
 
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article>
 <h2>watch</h2>
-<p><br/></p>
 <blockquote>
 <p>Vue 确实提供了一种更通用的方式来观察和响应 Vue 实例上的数据变动：<strong>watch 属性</strong>。当你有一些数据需要随着其它数据变动而变动时</p>
 </blockquote>
@@ -255,7 +257,7 @@
 <slide class="slide"><section class="slide-wrapper"><article>
 <h2>Question：</h2>
 <p><br/></p>
-<ul class="fadeIn">
+<ul>
 <li>data一级属性什么时候定义,为什么？</li>
 <li>watch可以监听那些属性 ,data中的二级属性能否监听？</li>
 <li>data属性是响应式的，如果操作二级属性（数组、对象、简单数据类型）依然让它们具有响应的能力</li>
@@ -264,10 +266,6 @@
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
 <h1>二、组件系统</h1>
-
-</article></section></slide>
-<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
-<h1>介绍</h1>
 <p><br/></p>
 <ul>
 <li>Vue组件设计</li>
@@ -291,15 +289,69 @@
 </ul>
 
 </article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>全局组件定义</h1>
+<p><br>
+要注册一个全局组件，你可以使用 Vue.component(tagName, options)。例如：</p>
+<pre><code class="html">&lt;div id=&quot;example&quot;&gt;
+  &lt;my-component :orderId=&#39;orderid&#39; @myClick=&#39;handle&#39;&gt;&lt;/my-component&gt;
+&lt;/div&gt;
+</code></pre>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<pre><code class="javascript">Vue.component(&#39;my-component&#39;, {
+  template:&#39;&lt;div @click=&quot;clickHandle&quot;&gt;{{}}-{{}}&lt;/div&gt;&#39;
+  data(){
+    return {
+        myPrivateProperty:1
+    }
+  },
+  props:{
+    orderId:{
+        type:Number,
+        required:true
+    }
+  },
+  methods:{
+    clickHandle(){
+        this.$emit(&#39;myClick&#39;)
+    }
+  }
+})
+</code></pre>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>局部组件定义</h1>
+<p><br>
+不必在全局注册每个组件。通过使用组件实例选项注册，可以使组件仅在另一个实例/组件的作用域中可用：</p>
+<pre><code class="javascript">var Child = {
+  template: &#39;&lt;div&gt;A custom component!&lt;/div&gt;&#39;,
+  props:{
+    childType:{
+        type:String
+        default:&#39;&#39;
+    }
+  }
+}
+new Vue({
+    components: {
+    // &lt;my-component&gt; 将只在父模板可用
+    &#39;my-component&#39;: Child
+  }
+})
+</code></pre>
+
+</article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article>
 <h2>可复用组件三要素</h2>
 <p><br/></p>
-<ul class="fadeIn">
+<ul>
 <li>Props 允许外部环境传递数据给组件，父容器与子组件交互</li>
 <li>Events 允许从外部环境在组件内触发副作用，子组件与父容器交互</li>
 <li>Slots 允许外部环境将额外的内容组合在组件中。</li>
 </ul>
-<p><br/></p>
 <pre><code class="html">&lt;my-component
   :foo=&quot;baz&quot;
   :bar=&quot;qux&quot;
@@ -320,6 +372,9 @@
 <li>支持默认值，必填值</li>
 <li>单项数据流，props属性不允许在内部改变</li>
 </ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
 <pre><code class="javascript">Vue.component(&#39;example&#39;, {
   props: {
     // 必传且是字符串
@@ -363,6 +418,9 @@
 </blockquote>
 <pre><code class="html">&lt;comp :foo.sync=&quot;bar&quot;&gt;&lt;/comp&gt;
 </code></pre>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
 <p><br/></p>
 <p>编译后自动被拓展为：</p>
 <pre><code class="html">&lt;comp :foo=&quot;bar&quot; @update:foo=&quot;val =&gt; bar = val&quot;&gt;&lt;/comp&gt;
@@ -378,8 +436,10 @@
 <blockquote>
 <p>为了让组件可以组合，我们需要一种方式来混合父组件的内容与子组件自己的模板。这个过程被称为内容分发 (或“transclusion”如果你熟悉 Angular)。Vue.js实现了一个内容分发 API，参照了当前 Web 组件规范草案，使用特殊的 <slot> 元素作为原始内容的插槽。</p>
 </blockquote>
-<p><br/>
-假定子组件模板为：</p>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<p>假定子组件模板为：</p>
 <pre><code class="html">&lt;div class=&quot;container&quot;&gt;
   &lt;header&gt;
     &lt;slot name=&quot;header&quot;&gt;&lt;/slot&gt;
@@ -404,6 +464,9 @@
   &lt;p slot=&quot;footer&quot;&gt;这里有一些联系信息&lt;/p&gt;
 &lt;/app-layout&gt;
 </code></pre>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
 <p><br>
 渲染结果：</p>
 <pre><code class="html">&lt;div class=&quot;container&quot;&gt;
@@ -439,14 +502,12 @@
 
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article>
-<p><br></p>
 <p>假定子组件内容为：</p>
 <pre><code class="html">&lt;div class=&quot;child&quot;&gt;
   &lt;slot v-for=&#39;item in list&#39;&gt;&lt;/slot&gt;
 &lt;/div&gt;
 </code></pre>
-<p><br>
-渲染结果：</p>
+<p>渲染结果：</p>
 <pre><code class="html">&lt;div class=&quot;parent&quot;&gt;
   &lt;div class=&quot;child&quot;&gt;
     &lt;span&gt;hello from parent&lt;/span&gt;
@@ -463,12 +524,14 @@
 <blockquote>
 <p>在现代 UI 开发中，我们已经发现相比于把代码库分离成三个大的层次并将其相互交织起来，把它们划分为松散耦合的组件再将其组合起来更合理一些。在一个组件里，其模板、逻辑和样式是内部耦合的，并且把他们搭配在一起实际上使得组件更加内聚且更可维护</p>
 </blockquote>
-<p><strong>组件成分：</strong></p>
 <ul>
 <li>模板</li>
 <li>逻辑</li>
 <li>资源样式</li>
 </ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
 <h2>使用单文件组件的优势</h2>
 <ul>
 <li>字符串模板高亮</li>
@@ -492,6 +555,9 @@
 <li>定义组件工厂函数</li>
 <li>支持返回promise或resolve解析异步函数</li>
 </ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
 <pre><code class="javascript">Vue.component(&#39;async-example&#39;, function (resolve, reject) {
  // 这个特殊的 require 语法告诉 webpack
   // 自动将编译后的代码分割成不同的块，
@@ -512,17 +578,12 @@
 
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
-<h1>三、拓展能力</h1>
-
-</article></section></slide>
-<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
-<h1>插件</h1>
+<h1>三、插件系统</h1>
 <p><br></p>
 <blockquote>
 <p>插件通常会为 Vue 添加全局功能。插件的范围没有限制</p>
 </blockquote>
-<p>插件作用：
-<br></p>
+<p><br></p>
 <ul class="moveIn">
 <li>添加全局方法或者属性</li>
 <li>添加全局资源：指令/过滤器/过渡等，如 vue-touch</li>
@@ -542,6 +603,10 @@
 <li>install 函数</li>
 <li>载入vue构造器和可选参数</li>
 </ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<p><br></p>
 <pre><code class="javascript">MyPlugin.install = function (Vue, options) {
   Vue.myGlobalMethod = function () {}
   // 2. 添加全局资源
@@ -569,12 +634,13 @@
 <pre><code class="javascript">// 调用 `MyPlugin.install(Vue)`
 Vue.use(MyPlugin)
 </code></pre>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
 <p><br>
-也可以传入一个选项对象：
-<br></p>
+也可以传入一个选项对象：</p>
 <pre><code class="javascript">Vue.use(MyPlugin, { someOption: true })
 </code></pre>
-<h3>优势：</h3>
 <p><br></p>
 <p>Vue.use 会自动阻止注册相同插件多次，届时只会注册一次该插件</p>
 
@@ -596,7 +662,6 @@ Vue.use(MyPlugin)
 </ul>
 </li>
 </ul>
-<p><br></p>
 <p>Tips: Vuex 经常使用铁四角[store.state、store.mutation、组件computed、页面模板绑定]</p>
 
 </article></section></slide>
@@ -606,7 +671,8 @@ Vue.use(MyPlugin)
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
 <h1>四、Webpack 模块捆绑器</h1>
-<p><br></p>
+<p><br>
+<img src="../img/webpack.png" alt=""></p>
 
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
@@ -720,6 +786,9 @@ Vue.use(MyPlugin)
 </code></pre>
 </li>
 </ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
 <p>实例：
 <br></p>
 <pre><code class="javascript">require([&#39;math&#39;], function (math) {
@@ -734,6 +803,9 @@ Vue.use(MyPlugin)
 语法如下：</p>
 <pre><code class="javascript">require.ensure(dependencies: String[], callback: function(require), chunkName: String)
 </code></pre>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
 <p>实例：
 <br></p>
 <pre><code class="javascript">require.ensure([], function (require) {
@@ -816,8 +888,7 @@ export function cube(x) {
 
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article>
-<p>index.js代码如下：
-<br></p>
+<p>index.js代码如下：</p>
 <pre><code class="javascript">import { cube } from &#39;./math.js&#39;;
 
   function component() {
@@ -835,6 +906,8 @@ export function cube(x) {
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
 <h1>五、babel/es6</h1>
+<p><br>
+<img src="../img/babel.png" alt=""></p>
 
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
@@ -899,12 +972,7 @@ babel-presets-env能够支持所有es2015+版本</p>
 
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article>
-<p><br>
-babel-plugins-transform-runtime插件，支持原生对象，但不支持原生API
-<br></p>
-<ul>
-<li>按需引入</li>
-</ul>
+<p>babel-plugins-transform-runtime插件，支持原生对象，但不支持原生API，按需引入 </p>
 <pre><code class="json">{
   &quot;presets&quot;: [
     [&quot;env&quot;, {
