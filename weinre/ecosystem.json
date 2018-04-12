@@ -1,0 +1,14 @@
+{
+	"apps":[
+		{
+			"name":"weinre",
+			"script":"weinre",
+                        "args":" --httpPort=9999 --boundHost=-all- --debug=true ",
+			"cwd":"/workspace/debug",
+			"watch":"true",
+			"error_file":"./logs/err.log",
+			"out_file":"./logs/out.log"
+		}
+	]
+
+}

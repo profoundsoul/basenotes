@@ -313,9 +313,7 @@ Vue.component('my-component', {
 
 [slide]
 # 局部组件定义
-<br>
 不必在全局注册每个组件。通过使用组件实例选项注册，可以使组件仅在另一个实例/组件的作用域中可用：
-
 ```javascript
 var Child = {
   template: '<div>A custom component!</div>',
@@ -327,10 +325,7 @@ var Child = {
   }
 }
 new Vue({
-    components: {
-    // <my-component> 将只在父模板可用
-    'my-component': Child
-  }
+    components: {'my-component': Child}
 })
 ```
 

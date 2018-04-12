@@ -1,0 +1,14 @@
+{
+	"apps":[
+		{
+			"name":"weinre-linq",
+			"script":"weinre",
+                        "args":" --httpPort=9998 --boundHost=-all- --debug=true ",
+			"cwd":"/workspace/debug",
+			"watch":"true",
+			"error_file":"./logs-linq/err.log",
+			"out_file":"./logs-linq/out.log"
+		}
+	]
+
+}

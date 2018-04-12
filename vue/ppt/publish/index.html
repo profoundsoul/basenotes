@@ -324,8 +324,7 @@
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
 <h1>局部组件定义</h1>
-<p><br>
-不必在全局注册每个组件。通过使用组件实例选项注册，可以使组件仅在另一个实例/组件的作用域中可用：</p>
+<p>不必在全局注册每个组件。通过使用组件实例选项注册，可以使组件仅在另一个实例/组件的作用域中可用：</p>
 <pre><code class="javascript">var Child = {
   template: &#39;&lt;div&gt;A custom component!&lt;/div&gt;&#39;,
   props:{
@@ -336,10 +335,7 @@
   }
 }
 new Vue({
-    components: {
-    // &lt;my-component&gt; 将只在父模板可用
-    &#39;my-component&#39;: Child
-  }
+    components: {&#39;my-component&#39;: Child}
 })
 </code></pre>
 

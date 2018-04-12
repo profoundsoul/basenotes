@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org)
+
+  landslide modifications: Adam Zapletal (adamzap@gmail.com)
+                           Nicolas Perriault (nperriault@gmail.com)
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>CDN</title>
+    <!-- Styles -->
+    
+    <link rel="stylesheet" media="print" href="file://C:\Users\pradmin\AppData\Local\Programs\Python\Python36-32\lib\site-packages\landslide\themes\default\css\print.css">
+    <link rel="stylesheet" media="screen, projection" href="file://C:\Users\pradmin\AppData\Local\Programs\Python\Python36-32\lib\site-packages\landslide\themes\default\css\screen.css">
+    
+    
+    <!-- /Styles -->
+    <!-- Javascripts -->
+    
+    <script type="text/javascript" src="file://C:\Users\pradmin\AppData\Local\Programs\Python\Python36-32\lib\site-packages\landslide\themes\default\js\slides.js"></script>
+    
+    
+    
+    <!-- /Javascripts -->
+</head>
+<body>
+  <div id="blank"></div>
+  <div class="presentation">
+    <div id="current_presenter_notes">
+      <div id="presenter_note"></div>
+    </div>
+    <div class="slides">
+      
+      <!-- slide source: cdn.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-1">
+          <div class="inner">
+            
+            <header><h1>CDN</h1></header>
+            
+            
+            <section><blockquote>
+<p>全称是Content Delivery Network，即内容分发网络。
++ 基本思路：避开互联网有可能影响数据传输速度、稳定性的瓶颈和环节，使内容传输的更快、更稳定。依据综合因素将用户请求重新导向离用户最近的服务器节点上，常见综合因素如下：
+    - 网络流量
+    - 各节点连接数
+    - 负载状况
+    - 用户距离
+    - 响应时间
++ 目的：用户可就近取的所需内容，解决Internet网络拥挤的状况，提供用户访问网的响应速度。
++ 基本原理：广泛采用各种缓存服务器，将缓存服务器分布在用户相对集中的地区或网络，在用户访问站点时，利用全局负载技术将用户的访问指向距离最近、响应速度最快的正常缓存服务器中，有缓存服务器直接响应用户请求。</p>
+</blockquote>
+<h2>是否开启CDN服务</h2>
+<h4>Windows</h4>
+<p>在CMD中输入：</p>
+<p><code>nsloopup www.baidu.com</code></p>
+<p>响应结果：
+```shell</p>
+<h1>dns服务器域名解析</h1>
+<p>服务器:  dns-cahe3.fnetlink.com
+Address:  121.14.136.214    </p>
+<p>非权威应答:
+名称:    www.a.shifen.com</p>
+<h1>多个IP代表的是具有cdn加速,一般具有Aliases映射都是代表有cdn</h1>
+<p>Addresses:  14.215.177.37
+          14.215.177.38
+Aliases:  www.baidu.com
+```</p>
+<h4>站长工具：Ping检测</h4>
+<blockquote>
+<p>借助在线工具测试网站是否开启CDN，并且可以测试出全国不同地区，访问该网站的速度与访问IP地址</p>
+</blockquote>
+<ul>
+<li><a href="http://ping.chinaz.com/">多个地点Ping服务器,网站测速 - 站长工具</a></li>
+<li><a href="http://ce.cloud.360.cn/">齐云测</a></li>
+</ul>
+<h4>URL是否命中CDN缓存</h4>
+<blockquote>
+<p>给网站使用CDN后，查看访问网站是否命中CDN缓存，用浏览器简单访问测试就可以看到。</p>
+</blockquote>
+<ul>
+<li>使用Chrome或火狐浏览器，按<strong>F12</strong>打开调试界面，选择网络或Network</li>
+<li>然后查看一个网站链接，在浏览器中进行访问，查看显示的http请求信息<ul>
+<li>查看Response Header（响应头）信息中的<strong><em>X-Cache</em></strong>字段</li>
+<li>MISS 说明没有命中CDN缓存</li>
+<li>HIT  是命中CDN缓存</li>
+</ul>
+</li>
+</ul>
+<h2>玩过的CDN</h2>
+<p><code>https://su.baidu.com
+qiulinkjycom   qiulinkjycom</code></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="cdn.md">cdn.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              1/1
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div id="toc" class="sidebar hidden">
+    <h2>Table of Contents</h2>
+    <table>
+      <caption>Table of Contents</caption>
+      
+      <tr id="toc-row-1">
+        <th><a href="#slide1">CDN</a></th>
+        <td><a href="#slide1">1</a></td>
+      </tr>
+      
+      
+    </table>
+  </div>
+  
+  <div id="help" class="sidebar hidden">
+    <h2>Help</h2>
+    <table>
+      <caption>Help</caption>
+      <tr>
+        <th>Table of Contents</th>
+        <td>t</td>
+      </tr>
+      <tr>
+        <th>Exposé</th>
+        <td>ESC</td>
+      </tr>
+      <tr>
+        <th>Full screen slides</th>
+        <td>e</td>
+      </tr>
+      <tr>
+        <th>Presenter View</th>
+        <td>p</td>
+      </tr>
+      <tr>
+        <th>Source Files</th>
+        <td>s</td>
+      </tr>
+      <tr>
+        <th>Slide Numbers</th>
+        <td>n</td>
+      </tr>
+      <tr>
+        <th>Toggle screen blanking</th>
+        <td>b</td>
+      </tr>
+      <tr>
+        <th>Show/hide slide context</th>
+        <td>c</td>
+      </tr>
+      <tr>
+        <th>Notes</th>
+        <td>2</td>
+      </tr>
+      <tr>
+        <th>Help</th>
+        <td>h</td>
+      </tr>
+    </table>
+  </div>
+  <script>main()</script>
+</body>
+</html>
