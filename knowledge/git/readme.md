@@ -5,7 +5,7 @@
 回滚commit和回退线上版本：<http://yijiebuyi.com/blog/8f985d539566d0bf3b804df6be4e0c90.html>
 
 > 我每天使用 Git ，但是很多命令记不住。
-一般来说，日常使用只要记住下图6个命令，就可以了。但是熟练使用，恐怕要记住60～100个命令。
+> 一般来说，日常使用只要记住下图6个命令，就可以了。但是熟练使用，恐怕要记住60～100个命令。
 
 ![git基本图](../images/gitrepository.png)
 
@@ -264,6 +264,9 @@ $ git remote show [remote]
 
 # 增加一个新的远程仓库，并命名
 $ git remote add [shortname] [url]
+
+# 更新仓库名称的远程仓库地址
+git remote set-url origin http://git.yiwill.cn/root/bim-microservices.git
 
 # 取回远程仓库的变化，并与本地分支合并
 $ git pull [remote] [branch]

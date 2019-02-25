@@ -27,3 +27,4 @@ npm install weinre -g
 # 启动weinre中间代理服务器
 pm2 start ecosystem.json 
 ```
+
